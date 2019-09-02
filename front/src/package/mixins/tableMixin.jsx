@@ -46,6 +46,7 @@ export default {
     const maxSizeOfRow = Math.max(...(this.meta._formLayout.map(row => row.length)))
     if (maxSizeOfRow) {
       this.modalWidth = maxSizeOfRow * 370
+      if (this.modalWidth < 760) this.modalWidth = 760
       if (this.modalWidth >= document.documentElement.clientWidth) this.modalFullscreen = true
     }
 

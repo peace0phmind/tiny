@@ -86,7 +86,7 @@ const model = {
     readonly: false,
     unique: false,
     collection: true,
-    modelType: 'MultiEnum',
+    modelType: 'ENUM',
     referenceMode: 'oneToMany',
     enumName: 'MultiEnum',
   },
