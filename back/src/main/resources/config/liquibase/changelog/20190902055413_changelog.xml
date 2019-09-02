@@ -1,0 +1,272 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mind (generated)" id="1567403666674-1">
+        <createTable tableName="sys_audit_event_log">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="sys_audit_event_logPK"/>
+            </column>
+            <column name="ip" type="VARCHAR(255)"/>
+            <column name="login_time" type="TIMESTAMP"/>
+            <column name="success" type="BOOLEAN"/>
+            <column name="username" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-2">
+        <createTable tableName="sys_department">
+            <column name="id" type="CHAR(36)">
+                <constraints primaryKey="true" primaryKeyName="sys_departmentPK"/>
+            </column>
+            <column name="_leaf" type="BOOLEAN"/>
+            <column name="_tn_idx" type="INT"/>
+            <column name="code_" type="VARCHAR(20)"/>
+            <column name="description" type="VARCHAR(1024)"/>
+            <column name="name_" type="VARCHAR(60)"/>
+            <column name="_parent_id" type="CHAR(36)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-3">
+        <createTable tableName="sys_department__tp">
+            <column name="depth" type="INT"/>
+            <column name="descendant" type="CHAR(36)">
+                <constraints primaryKey="true" primaryKeyName="sys_department__tpPK"/>
+            </column>
+            <column name="ancestor" type="CHAR(36)">
+                <constraints primaryKey="true" primaryKeyName="sys_department__tpPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-4">
+        <createTable tableName="sys_menu">
+            <column name="id" type="CHAR(36)">
+                <constraints primaryKey="true" primaryKeyName="sys_menuPK"/>
+            </column>
+            <column name="_leaf" type="BOOLEAN"/>
+            <column name="_tn_idx" type="INT"/>
+            <column name="component" type="VARCHAR(255)"/>
+            <column name="hide_in_bread" type="BOOLEAN"/>
+            <column name="hide_in_menu" type="BOOLEAN"/>
+            <column name="icon" type="VARCHAR(255)"/>
+            <column name="name_" type="VARCHAR(255)"/>
+            <column name="not_cache" type="BOOLEAN"/>
+            <column name="path" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="_parent_id" type="CHAR(36)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-5">
+        <createTable tableName="sys_menu__tp">
+            <column name="depth" type="INT"/>
+            <column name="descendant" type="CHAR(36)">
+                <constraints primaryKey="true" primaryKeyName="sys_menu__tpPK"/>
+            </column>
+            <column name="ancestor" type="CHAR(36)">
+                <constraints primaryKey="true" primaryKeyName="sys_menu__tpPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-6">
+        <createTable tableName="sys_menu_role">
+            <column name="menu_id" type="CHAR(36)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="role_id" type="CHAR(36)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-7">
+        <createTable tableName="sys_permission">
+            <column name="_type" type="VARCHAR(31)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="CHAR(36)">
+                <constraints primaryKey="true" primaryKeyName="sys_permissionPK"/>
+            </column>
+            <column name="model_cn_name" type="VARCHAR(255)"/>
+            <column name="model_name" type="VARCHAR(255)"/>
+            <column name="model_uri" type="VARCHAR(255)"/>
+            <column name="op_type" type="VARCHAR(15)"/>
+            <column name="attr_attribute_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-8">
+        <createTable tableName="sys_role">
+            <column name="id" type="CHAR(36)">
+                <constraints primaryKey="true" primaryKeyName="sys_rolePK"/>
+            </column>
+            <column name="default_role" type="BOOLEAN"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="inner_name" type="VARCHAR(255)"/>
+            <column name="name_" type="VARCHAR(255)"/>
+            <column name="type_" type="VARCHAR(11)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-9">
+        <createTable tableName="sys_role_permission">
+            <column name="_type" type="VARCHAR(31)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="CHAR(36)">
+                <constraints primaryKey="true" primaryKeyName="sys_role_permissionPK"/>
+            </column>
+            <column name="attr_type" type="VARCHAR(12)"/>
+            <column name="op_allow" type="BOOLEAN"/>
+            <column name="permission_id" type="CHAR(36)"/>
+            <column name="role_id" type="CHAR(36)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-10">
+        <createTable tableName="sys_role_user">
+            <column name="user_id" type="CHAR(36)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="role_id" type="CHAR(36)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-11">
+        <createTable tableName="sys_schedule_job">
+            <column name="id" type="CHAR(36)">
+                <constraints primaryKey="true" primaryKeyName="sys_schedule_jobPK"/>
+            </column>
+            <column name="active" type="BOOLEAN"/>
+            <column name="bean_name" type="VARCHAR(200)"/>
+            <column name="created_date" type="TIMESTAMP"/>
+            <column name="cron_expression" type="VARCHAR(100)"/>
+            <column name="method_name" type="VARCHAR(100)"/>
+            <column name="modified_date" type="TIMESTAMP"/>
+            <column name="params" type="VARCHAR(2000)"/>
+            <column name="remarks" type="VARCHAR(255)"/>
+            <column name="single_case" type="BOOLEAN"/>
+            <column name="creator_id" type="CHAR(36)"/>
+            <column name="modifier_id" type="CHAR(36)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-12">
+        <createTable tableName="sys_schedule_job_log">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="sys_schedule_job_logPK"/>
+            </column>
+            <column name="result" type="VARCHAR(255)"/>
+            <column name="start_time" type="TIMESTAMP"/>
+            <column name="success" type="BOOLEAN"/>
+            <column name="times" type="INT"/>
+            <column name="job_id" type="CHAR(36)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-13">
+        <createTable tableName="sys_system_log">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="sys_system_logPK"/>
+            </column>
+            <column name="class_name" type="VARCHAR(1024)"/>
+            <column name="cost_time" type="INT"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="ip_address" type="VARCHAR(32)"/>
+            <column name="method_name" type="VARCHAR(1024)"/>
+            <column name="params" type="VARCHAR(4096)"/>
+            <column name="request_time" type="TIMESTAMP"/>
+            <column name="username" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-14">
+        <createTable tableName="sys_user">
+            <column name="id" type="CHAR(36)">
+                <constraints primaryKey="true" primaryKeyName="sys_userPK"/>
+            </column>
+            <column name="birthday" type="date"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="enabled" type="BOOLEAN"/>
+            <column name="name_" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_" type="VARCHAR(255)"/>
+            <column name="phone" type="VARCHAR(255)"/>
+            <column name="sex" type="VARCHAR(9)"/>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="department_id" type="CHAR(36)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-15">
+        <addUniqueConstraint columnNames="username" constraintName="UC_SYS_USERUSERNAME_COL" tableName="sys_user"/>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-16">
+        <createIndex indexName="idx_sys_department__parent_id" tableName="sys_department">
+            <column name="_parent_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-17">
+        <createIndex indexName="idx_sys_menu__parent_id" tableName="sys_menu">
+            <column name="_parent_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-18">
+        <createIndex indexName="idx_sys_role_permission_permission_id" tableName="sys_role_permission">
+            <column name="permission_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-19">
+        <createIndex indexName="idx_sys_role_permission_role_id" tableName="sys_role_permission">
+            <column name="role_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-20">
+        <createIndex indexName="idx_sys_role_type_" tableName="sys_role">
+            <column name="type_"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-21">
+        <createIndex indexName="idx_sys_schedule_job_creator_id" tableName="sys_schedule_job">
+            <column name="creator_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-22">
+        <createIndex indexName="idx_sys_schedule_job_log_job_id" tableName="sys_schedule_job_log">
+            <column name="job_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-23">
+        <createIndex indexName="idx_sys_schedule_job_modifier_id" tableName="sys_schedule_job">
+            <column name="modifier_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-24">
+        <createIndex indexName="idx_sys_user_department_id" tableName="sys_user">
+            <column name="department_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-25">
+        <createIndex indexName="idx_sys_user_sex" tableName="sys_user">
+            <column name="sex"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-26">
+        <createIndex indexName="sys_menu_role_menu_id" tableName="sys_menu_role">
+            <column name="menu_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-27">
+        <createIndex indexName="sys_menu_role_role_id" tableName="sys_menu_role">
+            <column name="role_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-28">
+        <createIndex indexName="sys_role_user_role_id" tableName="sys_role_user">
+            <column name="role_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-29">
+        <createIndex indexName="sys_role_user_user_id" tableName="sys_role_user">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-30">
+        <addForeignKeyConstraint baseColumnNames="job_id" baseTableName="sys_schedule_job_log" constraintName="FK7nu1c7glqktdgihk38yq6r9x2" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="sys_schedule_job" validate="true"/>
+    </changeSet>
+    <changeSet author="mind (generated)" id="1567403666674-31">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="sys_role_permission" constraintName="FK9q28ewrhntqeipl1t04kh1be7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="sys_role" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

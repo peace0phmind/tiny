@@ -80,5 +80,45 @@ pool['c-sys-system-logs'] = {
   meta: SysSystemLogMeta
 }
 
+import TnyTestType from '_v/TestType/index.vue'
+import * as TnyTestTypeMeta from '_v/TestType/meta.js'
+Vue.component('c-tny-test-types', TnyTestType)
+pool['c-tny-test-types'] = {
+  __file: TnyTestType,
+  meta: TnyTestTypeMeta
+}
+
+import TnyTest from '_v/Test/index.vue'
+import * as TnyTestMeta from '_v/Test/meta.js'
+Vue.component('c-tny-tests', TnyTest)
+pool['c-tny-tests'] = {
+  __file: TnyTest,
+  meta: TnyTestMeta
+}
+
+import TnyItem from '_v/item/Item/index.vue'
+import * as TnyItemMeta from '_v/item/Item/meta.js'
+Vue.component('c-tny-items', TnyItem)
+pool['c-tny-items'] = {
+  __file: TnyItem,
+  meta: TnyItemMeta
+}
+
+import TnyTreeTest from '_v/TreeTest/index.vue'
+import * as TnyTreeTestMeta from '_v/TreeTest/meta.js'
+Vue.component('c-tny-tree-tests', TnyTreeTest)
+pool['c-tny-tree-tests'] = {
+  __file: TnyTreeTest,
+  meta: TnyTreeTestMeta
+}
+
+import TnyTreeItem from '_v/item/TreeItem/index.vue'
+import * as TnyTreeItemMeta from '_v/item/TreeItem/meta.js'
+Vue.component('c-tny-tree-items', TnyTreeItem)
+pool['c-tny-tree-items'] = {
+  __file: TnyTreeItem,
+  meta: TnyTreeItemMeta
+}
+
 
 export default pool
