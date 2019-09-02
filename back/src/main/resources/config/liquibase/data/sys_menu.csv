@@ -9,3 +9,9 @@
 "d05276b5-35e0-4310-b9c2-5b583d8bbdd7","TRUE","60000","system/Menu/index","FALSE","FALSE","ios-apps","Menu","FALSE","/sys-menus","菜单管理","efcce0b3-bf1f-45db-b1ca-dc54cc4e69b3"
 "068e0236-8e82-45d9-b363-8f1677a43efb","TRUE","70000","system/Permission/index","FALSE","TRUE","ios-apps","Permission","FALSE","/sys-permissions","权限管理","efcce0b3-bf1f-45db-b1ca-dc54cc4e69b3"
 "dbbf697f-dd37-41ae-9e72-3af212f45409","TRUE","80000","system/RolePermission/index","FALSE","TRUE","ios-apps","RolePermission","FALSE","/sys-role-permissions","角色权限管理","efcce0b3-bf1f-45db-b1ca-dc54cc4e69b3"
+"ae90cfc4-75b5-4eb8-b8e1-7bbfb99ebecb","TRUE","9010000","TestType/index","FALSE","FALSE","ios-apps","TestType","FALSE","/tny-test-types","测试类型管理",NULL
+"3cc4f631-62ed-4fdf-8b3b-292b76933ea5","TRUE","9020000","Test/index","FALSE","FALSE","ios-apps","Test","FALSE","/tny-tests","测试管理",NULL
+"be0dc91a-8a2f-4168-8c79-2995f6193750","FALSE","9030000","_c/main","FALSE","FALSE","ios-apps","item","FALSE","item","item",NULL
+"97324e5a-4f3e-44a2-93c7-1303beeea53a","TRUE","0","item/Item/index","FALSE","FALSE","ios-apps","Item","FALSE","/tny-items","测试item管理","be0dc91a-8a2f-4168-8c79-2995f6193750"
+"92be547f-7a93-4445-a69f-a6eb68e5f849","TRUE","9040000","TreeTest/index","FALSE","FALSE","ios-apps","TreeTest","FALSE","/tny-tree-tests","树测试管理",NULL
+"348d4d5a-397b-419c-82d2-7c207e573f79","TRUE","10000","item/TreeItem/index","FALSE","FALSE","ios-apps","TreeItem","FALSE","/tny-tree-items","tree测试item管理","be0dc91a-8a2f-4168-8c79-2995f6193750"
