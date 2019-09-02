@@ -1,0 +1,40 @@
+const model = {
+  permission: {
+    name: '权限',
+    type: 'MODEL',
+    required: false,
+    readonly: false,
+    unique: false,
+    modelType: 'SUPER',
+    modelName: 'Permission',
+    referenceMode: 'manyToOne',
+    resourcePath: 'sys-permissions',
+    tree: false,
+    primaryKey: 'id',
+    primaryKeyType: 'UUID',
+    componentRelativePath: 'system/Permission',
+    componentName: 'c-sys-permissions',
+    bidirectional: false,
+    arr: [],
+  },
+  role: {
+    name: '权限',
+    type: 'MODEL',
+    required: false,
+    readonly: false,
+    unique: false,
+    modelType: 'COMMON',
+    modelName: 'Role',
+    referenceMode: 'manyToOne',
+    resourcePath: 'sys-roles',
+    tree: false,
+    primaryKey: 'id',
+    primaryKeyType: 'UUID',
+    componentRelativePath: 'system/Role',
+    componentName: 'c-sys-roles',
+    bidirectional: true,
+    arr: [],
+  }
+}
+
+export default model

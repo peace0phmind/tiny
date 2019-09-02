@@ -1,0 +1,11 @@
+"ID","_LEAF","_TN_IDX","COMPONENT","HIDE_IN_BREAD","HIDE_IN_MENU","ICON","NAME_","NOT_CACHE","PATH","TITLE","_PARENT_ID"
+"efcce0b3-bf1f-45db-b1ca-dc54cc4e69b3","FALSE","9000000","_c/main","FALSE","FALSE","ios-apps","system","FALSE","system","系统管理",NULL
+"2935c20e-5aa0-450a-bf6a-a401110cef89","TRUE","0","system/User/index","FALSE","FALSE","ios-apps","User","FALSE","/sys-users","用户管理","efcce0b3-bf1f-45db-b1ca-dc54cc4e69b3"
+"ab5deeda-5357-46a5-87b3-cb6f9530859b","TRUE","10000","system/Role/index","FALSE","FALSE","ios-apps","Role","FALSE","/sys-roles","角色管理","efcce0b3-bf1f-45db-b1ca-dc54cc4e69b3"
+"83f8b4e6-5cb8-4f8f-ac5b-1a197192439b","TRUE","20000","system/Department/index","FALSE","FALSE","ios-apps","Department","FALSE","/sys-departments","部门管理","efcce0b3-bf1f-45db-b1ca-dc54cc4e69b3"
+"755acf70-9bf8-4033-8533-c1f7a96bc86c","TRUE","30000","system/ScheduleJob/index","FALSE","FALSE","ios-apps","ScheduleJob","FALSE","/sys-schedule-jobs","定时任务","efcce0b3-bf1f-45db-b1ca-dc54cc4e69b3"
+"4af97348-a7cf-4c7b-aeb7-59e7b940d5de","TRUE","40000","system/AuditEventLog/index","FALSE","FALSE","ios-apps","AuditEventLog","FALSE","/sys-audit-event-logs","登录日志","efcce0b3-bf1f-45db-b1ca-dc54cc4e69b3"
+"42942232-38a5-49f9-abae-2ed028d99059","TRUE","50000","system/SystemLog/index","FALSE","FALSE","ios-apps","SystemLog","FALSE","/sys-system-logs","系统日志","efcce0b3-bf1f-45db-b1ca-dc54cc4e69b3"
+"d05276b5-35e0-4310-b9c2-5b583d8bbdd7","TRUE","60000","system/Menu/index","FALSE","FALSE","ios-apps","Menu","FALSE","/sys-menus","菜单管理","efcce0b3-bf1f-45db-b1ca-dc54cc4e69b3"
+"068e0236-8e82-45d9-b363-8f1677a43efb","TRUE","70000","system/Permission/index","FALSE","TRUE","ios-apps","Permission","FALSE","/sys-permissions","权限管理","efcce0b3-bf1f-45db-b1ca-dc54cc4e69b3"
+"dbbf697f-dd37-41ae-9e72-3af212f45409","TRUE","80000","system/RolePermission/index","FALSE","TRUE","ios-apps","RolePermission","FALSE","/sys-role-permissions","角色权限管理","efcce0b3-bf1f-45db-b1ca-dc54cc4e69b3"

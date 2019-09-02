@@ -1,0 +1,1 @@
+export default `<div style="font-size: 18px;color: white;line-height: 25px">Proto</div>`

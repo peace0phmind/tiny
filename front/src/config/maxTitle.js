@@ -1,0 +1,1 @@
+export default `<div style="font-size: 18px;padding-left: 15px;color: white;line-height: 25px">Proto 开发平台</div>`
