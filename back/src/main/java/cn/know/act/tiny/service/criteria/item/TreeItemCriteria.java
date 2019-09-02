@@ -9,7 +9,6 @@ import cn.know.act.proton.core.util.IRW;
 import javax.annotation.Generated;
 import cn.know.act.proton.core.service.filter.LongFilter;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import javax.persistence.Transient;
 
 /**
  * tree测试item
@@ -18,7 +17,7 @@ import javax.persistence.Transient;
 @NoArgsConstructor
 @EqualsAndHashCode
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "_type")
-public abstract class TreeItemCriteria implements Serializable {
+public class TreeItemCriteria implements Serializable {
 
     /**
      * 名称
@@ -37,20 +36,6 @@ public abstract class TreeItemCriteria implements Serializable {
      */
     @Generated(IRW.CODE_GENERATOR)
     private LongFilter tests;
-
-    @Generated(IRW.CODE_GENERATOR)
-    @Transient
-    private _Type _type = _Type.valueOf(this.getClass());
-
-    @Generated(IRW.CODE_GENERATOR)
-    public _Type get_type() {
-        return this._type;
-    }
-
-    @Generated(IRW.CODE_GENERATOR)
-    public void set_type(_Type _type) {
-        this._type = _type;
-    }
 
     @Generated(IRW.CODE_GENERATOR)
     public StringFilter getName() {
@@ -80,31 +65,5 @@ public abstract class TreeItemCriteria implements Serializable {
     @Generated(IRW.CODE_GENERATOR)
     public void setTests(LongFilter tests) {
         this.tests = tests;
-    }
-
-    public enum _Type {
-        ;
-
-        private Class field;
-
-        @Generated(IRW.CODE_GENERATOR)
-        _Type(Class field) {
-            this.field = field;
-        }
-
-        @Generated(IRW.CODE_GENERATOR)
-        public static _Type valueOf(Class field) {
-            for (_Type type : values()) {
-                if (type.field.equals(field)) {
-                    return type;
-                }
-            }
-            return null;
-        }
-
-        @Generated(IRW.CODE_GENERATOR)
-        public Class getField() {
-            return field;
-        }
     }
 }

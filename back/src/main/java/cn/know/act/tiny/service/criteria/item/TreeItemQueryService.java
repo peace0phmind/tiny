@@ -84,7 +84,7 @@ public class TreeItemQueryService extends QueryService<TreeItem> {
      */
     @Generated(IRW.CODE_GENERATOR)
     private Specification<TreeItem> createSpecification(TreeItemCriteria criteria) {
-        Specification specification = Specification.where(null);
+        Specification<TreeItem> specification = Specification.where(null);
         if (criteria != null) {
             if (criteria.getName() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getName(), TreeItem_.name));

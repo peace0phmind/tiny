@@ -84,7 +84,7 @@ public class ItemQueryService extends QueryService<Item> {
      */
     @Generated(IRW.CODE_GENERATOR)
     private Specification<Item> createSpecification(ItemCriteria criteria) {
-        Specification specification = Specification.where(null);
+        Specification<Item> specification = Specification.where(null);
         if (criteria != null) {
             if (criteria.getName() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getName(), Item_.name));

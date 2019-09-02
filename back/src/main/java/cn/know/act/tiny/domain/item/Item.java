@@ -8,9 +8,6 @@ import lombok.AllArgsConstructor;
 import javax.persistence.Table;
 import javax.persistence.Index;
 import javax.persistence.Entity;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import java.util.UUID;
 import cn.know.act.proton.core.util.IRW;
 import javax.annotation.Generated;
@@ -26,8 +23,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ForeignKey;
 import javax.persistence.ConstraintMode;
 import java.text.MessageFormat;
-import javax.persistence.Transient;
 import java.util.Objects;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 /**
  * 测试item
@@ -40,7 +39,7 @@ import java.util.Objects;
 @Entity(name = "TnyItem")
 @DiscriminatorColumn(name = "_type")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Item implements Serializable {
+public class Item implements Serializable {
 
     @Generated(IRW.CODE_GENERATOR)
     @Id
@@ -74,22 +73,8 @@ public abstract class Item implements Serializable {
     private Test test;
 
     @Generated(IRW.CODE_GENERATOR)
-    @Transient
-    private _Type _type = _Type.valueOf(this.getClass());
-
-    @Generated(IRW.CODE_GENERATOR)
     public String get_instanceName() {
         return MessageFormat.format("{0}", id);
-    }
-
-    @Generated(IRW.CODE_GENERATOR)
-    public _Type get_type() {
-        return this._type;
-    }
-
-    @Generated(IRW.CODE_GENERATOR)
-    public void set_type(_Type _type) {
-        this._type = _type;
     }
 
     @Override
@@ -149,31 +134,5 @@ public abstract class Item implements Serializable {
     @Generated(IRW.CODE_GENERATOR)
     public void setTest(Test test) {
         this.test = test;
-    }
-
-    public enum _Type {
-        ;
-
-        private Class field;
-
-        @Generated(IRW.CODE_GENERATOR)
-        _Type(Class field) {
-            this.field = field;
-        }
-
-        @Generated(IRW.CODE_GENERATOR)
-        public static _Type valueOf(Class field) {
-            for (_Type type : values()) {
-                if (type.field.equals(field)) {
-                    return type;
-                }
-            }
-            return null;
-        }
-
-        @Generated(IRW.CODE_GENERATOR)
-        public Class getField() {
-            return field;
-        }
     }
 }

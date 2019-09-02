@@ -13,7 +13,6 @@ import java.util.Optional;
 import javax.validation.constraints.Size;
 import cn.know.act.tiny.service.dto.TestDTO;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import javax.persistence.Transient;
 
 /**
  * 测试item
@@ -23,7 +22,7 @@ import javax.persistence.Transient;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @EqualsAndHashCode
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "_type")
-public abstract class ItemDTO extends BaseDTO<UUID> implements Serializable {
+public class ItemDTO extends BaseDTO<UUID> implements Serializable {
 
     @Generated(IRW.CODE_GENERATOR)
     private UUID id;
@@ -50,10 +49,6 @@ public abstract class ItemDTO extends BaseDTO<UUID> implements Serializable {
     private String _instanceName;
 
     @Generated(IRW.CODE_GENERATOR)
-    @Transient
-    private _Type _type = _Type.valueOf(this.getClass());
-
-    @Generated(IRW.CODE_GENERATOR)
     public String get_instanceName() {
         return _instanceName;
     }
@@ -61,16 +56,6 @@ public abstract class ItemDTO extends BaseDTO<UUID> implements Serializable {
     @Generated(IRW.CODE_GENERATOR)
     public void set_instanceName(String _instanceName) {
         this._instanceName = _instanceName;
-    }
-
-    @Generated(IRW.CODE_GENERATOR)
-    public _Type get_type() {
-        return this._type;
-    }
-
-    @Generated(IRW.CODE_GENERATOR)
-    public void set_type(_Type _type) {
-        this._type = _type;
     }
 
     @Generated(IRW.CODE_GENERATOR)
@@ -111,31 +96,5 @@ public abstract class ItemDTO extends BaseDTO<UUID> implements Serializable {
     @Generated(IRW.CODE_GENERATOR)
     public void setTest(Optional<TestDTO> test) {
         this.test = test;
-    }
-
-    public enum _Type {
-        ;
-
-        private Class field;
-
-        @Generated(IRW.CODE_GENERATOR)
-        _Type(Class field) {
-            this.field = field;
-        }
-
-        @Generated(IRW.CODE_GENERATOR)
-        public static _Type valueOf(Class field) {
-            for (_Type type : values()) {
-                if (type.field.equals(field)) {
-                    return type;
-                }
-            }
-            return null;
-        }
-
-        @Generated(IRW.CODE_GENERATOR)
-        public Class getField() {
-            return field;
-        }
     }
 }

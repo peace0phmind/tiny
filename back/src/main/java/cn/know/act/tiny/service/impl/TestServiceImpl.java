@@ -10,6 +10,7 @@ import cn.know.act.tiny.service.mapper.TestMapper;
 import io.jsonwebtoken.lang.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Generated;
 import java.util.List;
 import java.util.Optional;
+import cn.know.act.tiny.repository.jpa.item.ItemJpaRepository;
+import cn.know.act.tiny.service.mapper.item.ItemMapper;
 import cn.know.act.tiny.domain.item.Item;
 
 /**
@@ -38,6 +41,14 @@ public class TestServiceImpl implements TestService {
 
     @Generated(IRW.CODE_GENERATOR)
     private final CacheManager cacheManager;
+
+    @Generated(IRW.CODE_GENERATOR)
+    @Autowired
+    private ItemJpaRepository itemJpaRepository;
+
+    @Generated(IRW.CODE_GENERATOR)
+    @Autowired
+    private ItemMapper itemMapper;
 
     @Generated(IRW.CODE_GENERATOR)
     public TestServiceImpl(TestJpaRepository testJpaRepository, TestMapper testMapper, CacheManager cacheManager) {
