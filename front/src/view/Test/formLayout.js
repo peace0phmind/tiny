@@ -11,6 +11,7 @@ const formLayout = [
   [{prop: 'dateTimeType'}],
   [{prop: 'booleanType'}],
   [{prop: 'status'}],
+  [{prop: 'multiEnums'}],
   [{prop: 'createdDate'}],
   [{prop: 'modifiedDate'}],
   [{prop: 'creator'}],

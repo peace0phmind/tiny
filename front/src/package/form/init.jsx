@@ -111,7 +111,10 @@ export default {
                     flatIds(tree, arr)
                     model[prop] = arr
                   })
-                } else model[prop] = val[primaryKey]
+                } else {
+                  this.$refs[`${prop}_form_item`].$refs[`${prop}_item`].pluginData(val[primaryKey])
+                  model[prop] = val[primaryKey]
+                }
               }
 
             }

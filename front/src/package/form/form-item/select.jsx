@@ -110,6 +110,10 @@ export default {
     }
   },
 
+  created() {
+
+  },
+
   methods: {
     onChange(val) {
       const call = this.zyxForm[`on${this.upperFirstItemProp}Change`]
@@ -129,9 +133,22 @@ export default {
     },
     init() {
       const _rest = new Rest(this.item.resourcePath, this.$apiURL)
-      _rest.GET({params: {page: 0, size: 100}}).then((res) => {
+      _rest.GET({params: {page: 0, size: 1000}}).then((res) => {
         if (res) {
           this.modelOptions[this.item.prop] = res.content
+          this._watcher.update()
+          if (this.modelOptions[this.item.prop].findIndex(option => option[this.item.primaryKey] === this.formModel[this.item.prop]) < 0) {
+            this.pluginData(this.formModel[this.item.prop])
+          }
+        }
+      })
+    },
+    pluginData(val) {
+      const _rest = new Rest(this.item.resourcePath, this.$apiURL)
+      _rest.GET({uri: val}).then((res) => {
+        if (res) {
+          this.modelOptions[this.item.prop] = this.modelOptions[this.item.prop] || []
+          this.modelOptions[this.item.prop].push(res)
           this.$forceUpdate()
         }
       })
@@ -157,7 +174,11 @@ export default {
           })
         },
         onOk: () => {
-          vm.modelOptions[vm.item.prop] = JSON.parse(JSON.stringify(vm.modelSelection))
+          // vm.modelOptions[vm.item.prop] = JSON.parse(JSON.stringify(vm.modelSelection))
+          vm.modelOptions[vm.item.prop] = vm.modelOptions[vm.item.prop] || []
+          for (let sel of vm.modelSelection) {
+            vm.modelOptions[vm.item.prop].push(sel)
+          }
           vm.$set(vm.formModel, vm.item.prop, vm.modelSelection[0][vm.formProps.id])
           vm.$forceUpdate()
           vm.modelSelection = []

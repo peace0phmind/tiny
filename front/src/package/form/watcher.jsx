@@ -10,7 +10,7 @@ export default {
             if (Object.keys(newFormModel).length !== Object.keys(this.previousFormModel).length || !_.isEqual(this.previousFormModel, newFormModel)) {
               const changed = findObjChange(newFormModel, this.previousFormModel)
               if (changed) {
-                Object.entries(changed).forEach(([k, v]) => this.changedModel[k] = JSON.parse(JSON.stringify(v)))
+                Object.entries(changed).forEach(([k, v]) => this.changedModel[k] = v && JSON.parse(JSON.stringify(v) || null))
                 this.disabledSubmit = false
               }
             } else {

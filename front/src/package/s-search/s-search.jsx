@@ -168,7 +168,7 @@ export default {
       let {hasDefaultSearchItem, searchItemArray, enums, queryParams, props, dropDownIcon, dropDownContent, drop} = this
 
       const createItem = (item) => {
-        return (<search-item item={item} enums={enums} queryParams={queryParams} props={props}></search-item>)
+        return (<search-item ref={`${item.key}Item`} item={item} enums={enums} queryParams={queryParams} props={props}></search-item>)
       }
 
       if (hasDefaultSearchItem) {

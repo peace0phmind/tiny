@@ -1,23 +1,32 @@
 <template>
   <div>
-    <s-search ref="search" v-show="searchable" :search-items="meta._searchItems" :enums="meta._enums" :props="meta.props"
+    <s-search ref="search" v-show="searchable" :search-items="meta._searchItems" :enums="meta._enums"
+              :props="meta.props"
               slot="search"
               @change-search="changeSearch" v-permission:read.resource="meta.restfulResourcePath">
     </s-search>
 
     <s-operation-bar v-show="!readonly" :meta="Object.assign(meta)">
 
-       <Button type="primary" style="margin-right: 5px;" @click="handleAdd" v-permission:create.resource="meta.restfulResourcePath"><i
-        class="el-icon-plus"></i>新增</Button>
+      <Button type="primary" style="margin-right: 5px;" @click="handleAdd"
+              v-permission:create.resource="meta.restfulResourcePath"><i
+        class="el-icon-plus"></i>新增
+      </Button>
 
-      <Button style="margin-right: 5px;" @click="handleRemoveAll" v-permission:delete.resource="meta.restfulResourcePath"><i class="el-icon-delete-solid"></i>批量删除</Button>
+      <Button style="margin-right: 5px;" @click="handleRemoveAll"
+              v-permission:delete.resource="meta.restfulResourcePath"><i class="el-icon-delete-solid"></i>批量删除
+      </Button>
 
-      <Button style="margin-right: 5px;" @click="frontExport" v-permission:export.resource="meta.restfulResourcePath"><i class="el-icon-share"></i>导出</Button>
+      <Button style="margin-right: 5px;" @click="frontExport" v-permission:export.resource="meta.restfulResourcePath"><i
+        class="el-icon-share"></i>导出
+      </Button>
 
     </s-operation-bar>
 
-    <e-table ref="table" :columns="meta._columns" :data="data" :enums="meta._enums" :meta="Object.assign(meta)" :resource-path="meta.restfulResourcePath"
-             @on-sort-change="onSortChange" @on-selection-change="onselectionchange" @on-select="onSelect" v-permission:read.resource="meta.restfulResourcePath">
+    <e-table ref="table" :columns="meta._columns" :data="data" :enums="meta._enums" :meta="Object.assign(meta)"
+             :resource-path="meta.restfulResourcePath"
+             @on-sort-change="onSortChange" @on-selection-change="onselectionchange" @on-select="onSelect"
+             v-permission:read.resource="meta.restfulResourcePath">
 
       <!--      <Avatar style="color: #f56a00;background-color: #fde3cf" slot="name" slot-scope="{row}">{{ row.name }}</Avatar>-->
 
@@ -63,18 +72,18 @@
 </template>
 
 <script>
-  import * as meta from './meta'
-  import table from '@/package/mixins/tableMixin'
+    import * as meta from './meta'
+    import table from '@/package/mixins/tableMixin'
 
-  export default {
-    name: meta.name,
-    data () {
-      return {
-        meta
-      }
-    },
-    mixins: [table]
-  }
+    export default {
+        name: meta.name,
+        data() {
+            return {
+                meta
+            }
+        },
+        mixins: [table]
+    }
 </script>
 
 <style scoped>

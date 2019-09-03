@@ -54,6 +54,8 @@ export default {
           }
           this.$set(this.formModel, k, v)
         }
+      } else {
+        this.$set(this.formModel, k, v)
       }
       return this
     },

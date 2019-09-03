@@ -6,7 +6,7 @@ export default {
   methods: {
     pluginRules() {
       this.normalFormItems.forEach(item => {
-        const {prop, valid, required, unique, equalsTo, minLength, maxLength, label} = item
+        const {prop, valid, required, unique, equalsTo, minLength, maxLength, label, max, min, precision, type} = item
 
         this.$set(this.rules, prop, [])
 
@@ -58,7 +58,7 @@ export default {
         if (maxLength) {
           this.rules[prop].push({
             max: maxLength,
-            message: `最大长度为${minLength}`,
+            message: `最大长度为${maxLength}`,
             trigger: 'change'
           })
         }
@@ -77,6 +77,58 @@ export default {
             },
             trigger: 'change'
           })
+        }
+
+        if (Types.isDecimal(type)) {
+          if (max) {
+            this.rules[prop].push({
+              validator: (rule, value, callback) => {
+                if (value) {
+                  if (Number(value) > max) {
+                    callback(`最大值不得超过${max}`)
+                  } else {
+                    callback()
+                  }
+                }
+              },
+              trigger: 'change'
+            })
+          }
+
+          if (min) {
+            this.rules[prop].push({
+              validator: (rule, value, callback) => {
+                if (value) {
+                  if (Number(value) < min) {
+                    callback(`最小值不得小于${min}`)
+                  } else {
+                    callback()
+                  }
+                }
+              },
+              trigger: 'change'
+            })
+          }
+
+          if (precision) {
+            this.rules[prop].push({
+              validator: (rule, value, callback) => {
+                if (value) {
+                  if (value.includes('.')) {
+                    const [d, p] = value.split('.')
+                    if (p.length === precision) {
+                      callback()
+                    } else {
+                      callback(new Error(`小数点精度必须为${precision}位`))
+                    }
+                  } else {
+                    callback(new Error(`小数点精度必须为${precision}位`))
+                  }
+                }
+              },
+              trigger: 'change'
+            })
+          }
         }
 
         if (valid) {

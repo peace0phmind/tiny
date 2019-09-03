@@ -583,8 +583,7 @@ const initRouterNode = function (routers, data) {
             path: '',
             name: menu.name,
             meta: {
-              icon: menu.icon,
-              title: menu.title
+              ...meta
             },
             component: menu.component
           }

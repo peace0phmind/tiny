@@ -24,8 +24,8 @@ export default {
   components: {SearchSlot},
 
   created() {
-    const {item} = this
-    item.type === Types.Model && (item.modelType === Types.ModelType.Common || item.modelType === Types.ModelType.Super) && this.pullOptions(item)
+    // const {item} = this
+    // item.type === Types.Model && (item.modelType === Types.ModelType.Common || item.modelType === Types.ModelType.Super) && this.pullOptions(item)
   },
 
   methods: {
@@ -59,6 +59,20 @@ export default {
           }
         })
       }
+    },
+    pluginData(item, val) {
+      let {resourcePath} = item
+      let _rest = new Rest(resourcePath, this.$apiURL)
+
+      _rest.GET({
+        uri: val,
+      }).then((res) => {
+        if (res) {
+          item.arr = item.arr || []
+          item.arr.push(res)
+          this.$forceUpdate()
+        }
+      })
     },
     onOpenChange(status, item) {
       if (status === true) {
@@ -145,7 +159,8 @@ export default {
         )
       } else if (type === Types.Decimal) {
         body = (
-          <InputNumberRang clearable v-model={this.queryParams[key]} {...{style: {width: this.width}}}></InputNumberRang>
+          <InputNumberRang clearable
+                           v-model={this.queryParams[key]} {...{style: {width: this.width}}}></InputNumberRang>
         )
       } else if (type === Types.Boolean) {
         body = (

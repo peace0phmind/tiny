@@ -176,12 +176,14 @@ export default {
                       })
                       if (_param[k] === undefined) _param[`${k}.in`] = arr
                       this.$nextTick(() => {
+                        this.$refs.search.$refs[`${k}Item`].pullOptions(this.meta._searchItems.find(searchItem => searchItem.key === k))
                         this.$refs.search.setValue(k, arr)
                       })
                     })
                   } else {
                     if (_param[k] === undefined) _param[`${k}.in`] = v
                     this.$nextTick(() => {
+                      this.$refs.search.$refs[`${k}Item`].pluginData(this.meta._searchItems.find(searchItem => searchItem.key === k), v)
                       if (primaryKeyType === 'Long') {
                         this.$refs.search.setValue(k, Number(v))
                       } else {

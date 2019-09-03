@@ -6,7 +6,7 @@ export default {
   methods: {
     createOneToManyBidirectionalNotExist({item}) {
       let {meta: {_columns: columns, _enums: enums, _formItems: formItems, _formLayout: formLayout, model, restfulResourcePath}} = this.$pool[item.componentName]
-      const {prop, resourcePath, label, primaryKey} = item
+      const {prop, resourcePath, label, primaryKey, referModelAttribute} = item
 
       if (!columns && !model) {
         throw new Error('columns or model not exist')
@@ -16,7 +16,7 @@ export default {
             return (
               <div>
                 <el-link icon={'el-icon-edit'} underline={false} type={'primary'}
-                         onClick={() => this.handleEditOneToManyNotExist(row, prop, formLayout)} {...{style: {marginRight: '10px'}}}></el-link>
+                         onClick={() => this.handleEditOneToManyNotExist(row, prop, formLayout, item)} {...{style: {marginRight: '10px'}}}></el-link>
                 <el-link icon={'el-icon-delete'} underline={false} type={'danger'}
                          onClick={() => this.handleRemoveOneToManyNotExist(row, item)}></el-link>
               </div>
@@ -29,7 +29,8 @@ export default {
         }
 
         const table = (
-          <e-table ref={prop} columns={columns} data={this[`${prop}Data`]} enums={enums} max-height={200}
+          <e-table ref={prop} columns={columns.filter(col => col.prop !== referModelAttribute)}
+                   data={this[`${prop}Data`]} enums={enums} max-height={200}
                    scopedSlots={actionSlot}>
           </e-table>
         )
@@ -64,8 +65,15 @@ export default {
       }
     },
 
-    handleEditOneToManyNotExist(row, prop, formLayout) {
-      this[`${prop}Mode`] = modes.UPDATE
+    handleEditOneToManyNotExist(row, prop, formLayout, item) {
+      const dataIndex = this[`${prop}Data`].findIndex(data => _.isEqual(row, data))
+      this[`${prop}DataIndex`] = dataIndex
+      if (this.formModel[prop] && this.formModel[prop].length) {
+        const formIndex = this.formModel[prop].findIndex(data => _.isEqual(row, data))
+        this[`${prop}FormIndex`] = formIndex
+      }else {
+        this[`${prop}FormIndex`] = undefined
+      }
       this[`${prop}ModalShow`] = true
       const maxSizeOfRow = Math.max(...(formLayout.map(row => row.length)))
       if (maxSizeOfRow) {
@@ -76,17 +84,21 @@ export default {
       }
       this.$refs[`${prop}Form`].init()
       Object.entries(row).forEach(([key, value]) => {
-        this.$refs[`${prop}Form`].setValue(key, value)
+        if (key !== item.referModelAttribute) {
+          this.$refs[`${prop}Form`].setValue(key, value)
+        }
       })
       this.$refs[`${prop}Form`].setValue(item.referModelAttribute, this.id)
       this.$refs[`${prop}Form`].disableFormItems(true, item.referModelAttribute)
-      const index = this[`${prop}Data`].findIndex(data => _.isEqual(row, data))
-      this[`${prop}Index`] = index
+      row.id && this.$refs[`${prop}Form`].setValue('id', row.id)
+      row.id && (this[`${prop}Mode`] = modes.UPDATE)
       this._watcher.update()
     },
 
     handleAddOneToManyNotExist(prop, formLayout, item) {
       this[`${prop}Mode`] = modes.CREATE
+      this[`${prop}FormIndex`] = undefined
+      this[`${prop}DataIndex`] = undefined
       this[`${prop}ModalShow`] = true
       const maxSizeOfRow = Math.max(...(formLayout.map(row => row.length)))
       if (maxSizeOfRow) {
@@ -98,7 +110,6 @@ export default {
       this.$refs[`${prop}Form`].init()
       this.$refs[`${prop}Form`].setValue(item.referModelAttribute, this.id)
       this.$refs[`${prop}Form`].disableFormItems(true, item.referModelAttribute)
-      this[`${prop}Index`] = undefined
       this._watcher.update()
     },
 
@@ -109,12 +120,16 @@ export default {
         this[`${item.prop}Data`] = this[`${item.prop}Data`] || []
         data = {...data, _mode: this[`${item.prop}Mode`]}
 
-        const index = this[`${item.prop}Index`]
-        if (index) {
-          this[`${item.prop}Data`].splice(index, 1, data)
-          this.formModel[item.prop].splice(index, 1, data)
+        const dataIndex = this[`${item.prop}DataIndex`]
+        const formIndex = this[`${item.prop}FormIndex`]
+        if (dataIndex >= 0) {
+          this[`${item.prop}Data`].splice(dataIndex, 1, data)
         } else {
           this[`${item.prop}Data`].push(data)
+        }
+        if (formIndex >= 0) {
+          this.formModel[item.prop].splice(formIndex, 1, data)
+        } else {
           this.formModel[item.prop].push(data)
         }
 
