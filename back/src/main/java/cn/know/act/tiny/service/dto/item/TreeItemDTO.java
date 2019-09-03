@@ -1,21 +1,20 @@
 package cn.know.act.tiny.service.dto.item;
 
-import cn.know.act.proton.core.util.BaseDTO;
-import cn.know.act.proton.core.util.IRW;
-import cn.know.act.tiny.service.dto.TreeTestDTO;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
-import javax.annotation.Generated;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.LinkedHashSet;
-import java.util.Optional;
-import java.util.Set;
+import lombok.ToString;
+import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import cn.know.act.proton.core.util.BaseDTO;
+import lombok.EqualsAndHashCode;
 import java.util.UUID;
+import cn.know.act.proton.core.util.IRW;
+import javax.annotation.Generated;
+import java.util.Optional;
+import javax.validation.constraints.Size;
+import cn.know.act.tiny.service.dto.TreeTestDTO;
+import java.util.Set;
+import java.util.LinkedHashSet;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
  * tree测试item
