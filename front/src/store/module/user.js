@@ -7,9 +7,9 @@ import {
   getUnreadCount
 } from '@/api/user'
 import {setToken, getToken} from '@/libs/util'
-import Rest from '../../libs/proton/Rest'
-
-const account = new Rest('account')
+import Rest from '../../package/lib/Rest'
+import Vue from 'vue'
+import {Message} from 'iview'
 
 export default {
   state: {
@@ -83,10 +83,13 @@ export default {
       username = username.trim()
       return new Promise((resolve, reject) => {
 
-        new Rest('authenticate').POST({data: {username, password}}).then((res) => {
+        new Rest('authenticate', Vue.prototype.$apiURL).POST({data: {username, password}}).then((res) => {
           const {id_token} = res
           commit('setToken', id_token)
           resolve(id_token)
+        }, error => {
+          const {data: {detail}} = error.response
+          Message.error(detail)
         }).catch((e) => {
           reject(e)
         })
@@ -113,6 +116,7 @@ export default {
     getUserInfo({state, commit}) {
       return new Promise((resolve, reject) => {
         try {
+          const account = new Rest('account', Vue.prototype.$apiURL)
           account.GET().then(userInfo => {
             commit('setAvatar', '')
             commit('setUserName', userInfo.username)
