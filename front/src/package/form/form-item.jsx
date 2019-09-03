@@ -46,7 +46,7 @@ export default {
     const vm = this
     if (!renderTo) {
       if (Types.isString(type)) renderTo = formItemRenderTypes.INPUT_TEXT
-      else if (Types.isDecimal(type)) renderTo = formItemRenderTypes.SLIDER
+      else if (Types.isDecimal(type)) renderTo = formItemRenderTypes.INPUT_NUMBER
       else if (Types.isBoolean(type)) renderTo = formItemRenderTypes.SWITCH
       else if (Types.isDateTime(type, dateType)) renderTo = formItemRenderTypes.DATE_TIME
       else if (Types.isDateOnly(type, dateType)) renderTo = formItemRenderTypes.DATE_ONLY
@@ -125,8 +125,8 @@ export default {
       formItemNode = (<zyx-date-picker ref={`${prop}_item`} form-model={this.formModel} disabled={this.disabled} readonly={this.readonly}
                                        item={this.item} type={'date'}></zyx-date-picker>)
     } else if (renderTo === formItemRenderTypes.TIME_ONLY) {// 时间框
-      formItemNode = (<zyx-date-picker ref={`${prop}_item`} form-model={this.formModel} disabled={this.disabled} readonly={this.readonly}
-                                       item={this.item}></zyx-date-picker>)
+      formItemNode = (<zyx-time-picker ref={`${prop}_item`} form-model={this.formModel} disabled={this.disabled} readonly={this.readonly}
+                                       item={this.item}></zyx-time-picker>)
     }
 
 

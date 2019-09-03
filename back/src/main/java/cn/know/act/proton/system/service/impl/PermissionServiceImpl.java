@@ -18,6 +18,11 @@ import javax.annotation.Generated;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import cn.know.act.proton.system.domain.OperationPerm;
+import cn.know.act.proton.system.service.dto.OperationPermDTO;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
+import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing {@link Permission }.
@@ -51,17 +56,38 @@ public class PermissionServiceImpl implements PermissionService {
      * @param permissionDTO the entity to save.
      * @return the persisted entity.
      */
-    @Generated(IRW.CODE_GENERATOR)
     @Override
     public PermissionDTO create(PermissionDTO permissionDTO) {
         if (log.isDebugEnabled()) {
             log.debug("Request to save permission: {}", permissionDTO);
         }
         Assert.isNull(permissionDTO.getId(), "Create entity's id must be null.");
-        Permission permission = permissionJpaRepository.save(permissionMapper.toDomain(permissionDTO));
-        PermissionDTO result = permissionMapper.toDto(permission);
-        // TODO add search option
-        return result;
+        Permission permission = permissionMapper.toDomain(permissionDTO);
+        if (StringUtils.hasText(permission.getModelName())) {
+            if (permissionDTO.isOperationPermDTO()) {
+                OperationPermDTO operationPermDTO = permissionDTO.asOperationPermDTO();
+                List<OperationPerm.Type> types = operationPermDTO.getTypes();
+                if (!CollectionUtils.isEmpty(types)) {
+                    List<Permission> allPermission = permissionJpaRepository.findAllByModelName(permission.getModelName()).stream().filter(x -> x.isOperationPerm()).collect(Collectors.toList());
+                    List<Permission> needToRemove = allPermission.stream().filter(p -> !types.contains(p.asOperationPerm().getType())).collect(Collectors.toList());
+                    List<OperationPerm.Type> inEachOther = allPermission.stream().filter(p -> types.contains(p.asOperationPerm().getType())).map(op -> op.asOperationPerm().getType()).collect(Collectors.toList());
+                    types.removeAll(inEachOther);
+                    permissionJpaRepository.deleteAll(needToRemove);
+                    for (OperationPerm.Type type : types) {
+                        OperationPerm operationPerm = new OperationPerm();
+                        operationPerm.setModelName(permission.getModelName());
+                        operationPerm.setModelCnName(permission.getModelCnName());
+                        operationPerm.setModelUri(permission.getModelUri());
+                        operationPerm.setType(type);
+                        permissionJpaRepository.save(operationPerm);
+                    }
+                }
+            }
+            if (permission.isAttributePerm()) {
+                throw new RuntimeException("尚未支持");
+            }
+        }
+        return permissionDTO;
     }
 
     /**

@@ -19,7 +19,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
@@ -62,19 +61,18 @@ public class PermissionResource {
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new Permission, or with status {@code 400 (Bad Request)} if the Permission has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @Generated(IRW.CODE_GENERATOR)
     @SysLog("创建权限")
     @PostMapping("/sys-permissions")
     @PreAuthorize("hasPermission(#templateDTO, 'SysPermission_CREATE')")
-    public ResponseEntity<PermissionDTO> createPermission(@Valid @RequestBody PermissionDTO permissionDTO) throws URISyntaxException {
+    public ResponseEntity createPermission(@Valid @RequestBody PermissionDTO permissionDTO) throws URISyntaxException {
         if (log.isDebugEnabled()) {
             log.debug("REST request to create Permission: {}", permissionDTO);
         }
         if (permissionDTO.getId() != null) {
             throw new BadRequestAlertException("A new Permission cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        PermissionDTO result = permissionService.create(permissionDTO);
-        return ResponseEntity.created(new URI("/api/sys-permissions/" + result.getId())).headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString())).body(result);
+        permissionService.create(permissionDTO);
+        return ResponseEntity.ok().build();
     }
 
     /**

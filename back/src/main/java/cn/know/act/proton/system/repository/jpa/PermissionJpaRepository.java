@@ -9,6 +9,7 @@ import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.List;
 
 /**
  * Spring Data repository for the {@link Permission }  entity.
@@ -16,6 +17,8 @@ import java.util.UUID;
 @SuppressWarnings("unused")
 @Repository("SysPermissionJpaRepository")
 public interface PermissionJpaRepository extends JpaRepository<Permission, UUID>, JpaSpecificationExecutor<Permission> {
+
+    List<Permission> findAllByModelName(String modelName);
 
     @Generated(IRW.CODE_GENERATOR)
     @Nullable

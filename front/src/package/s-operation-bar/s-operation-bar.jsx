@@ -3,6 +3,7 @@ import Sortable from 'sortablejs'
 import * as Types from '../_util/javaTypes.js'
 import * as RenderTypes from '../_util/renderType'
 import './index.less'
+import FormSetting from './form-setting/formSetting'
 
 export default {
   name: 's-operation-bar',
@@ -10,6 +11,8 @@ export default {
   props: {
     meta: {}
   },
+
+  components: {FormSetting},
 
   data() {
     return {
@@ -214,18 +217,6 @@ export default {
         return {classes: '', dom: '', label: '占位符'}
       }
     }
-  },
-
-  mounted() {
-    const formSetting = document.querySelector('#metaForm')
-    Sortable.create(formSetting, {
-      onEnd({newIndex, oldIndex}) {
-        const targetRow = self.formLayoutArray.splice(oldIndex, 1)[0]
-        self.formLayoutArray.splice(newIndex, 0, [...targetRow])
-        const targetMeta = self.formLayoutMeta.splice(oldIndex, 1)[0]
-        self.formLayoutMeta.splice(newIndex, 0, [...targetMeta])
-      }
-    })
   },
 
   computed: {
@@ -517,9 +508,10 @@ export default {
                   })}
                 </el-select>
               )
-            } else if (Types.isString(type)){
+            } else if (Types.isString(type)) {
               return (
-                <el-select v-model={scope.row.flatAttr} multiple allow-create filterable default-first-option placeholder={'当值为json生效'} size={'mini'}
+                <el-select v-model={scope.row.flatAttr} multiple allow-create filterable default-first-option
+                           placeholder={'当值为json生效'} size={'mini'}
                            no-data-text={'属性为空'}
                            {...{style: {width: '100%'}}}>
                 </el-select>
@@ -820,6 +812,10 @@ export default {
     const formModal = (
       <Modal v-model={this.formSettingShow} title={'表单布局配置'} width={906} scopedSlots={formItemSetting}>
       </Modal>
+      // <Modal v-model={this.formSettingShow} title={'表单布局配置'} width={width}>
+      //   <form-setting form-layout={this.formLayoutArray} formItems={this.formItems}
+      //                 relativePath={this.relativePath}></form-setting>
+      // </Modal>
     )
     const searchModal = (
       <Modal v-model={this.searchSettingShow} title={'搜索条件配置'} width={width} vOn:on-ok={this.saveSearchSetting}

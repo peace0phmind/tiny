@@ -10,6 +10,7 @@ import java.util.Optional;
 import cn.know.act.proton.core.util.IRW;
 import javax.annotation.Generated;
 import java.util.function.Consumer;
+import java.util.List;
 
 /**
  * 操作权限
@@ -20,11 +21,21 @@ import java.util.function.Consumer;
 @EqualsAndHashCode(callSuper = true)
 public class OperationPermDTO extends PermissionDTO implements Serializable {
 
+    private List<OperationPerm.Type> types;
+
     /**
      * 操作类型
      */
     @Generated(IRW.CODE_GENERATOR)
     private Optional<OperationPerm.Type> type;
+
+    public List<OperationPerm.Type> getTypes() {
+        return types;
+    }
+
+    public void setTypes(List<OperationPerm.Type> types) {
+        this.types = types;
+    }
 
     @Generated(IRW.CODE_GENERATOR)
     public boolean isOperationPermDTO() {

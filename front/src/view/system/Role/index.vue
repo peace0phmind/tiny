@@ -201,10 +201,10 @@
                     return modelGroup
                 }
 
-                operationRest.GET().then(res => {
+                operationRest.GET({params: {page: 0, size: 2000}}).then(res => {
                     const allOperationPermission = res.content.filter(op => op.operationPermDTO)
 
-                    roleOperationRest.GET({params: {'roleId.equals': id}}).then(res => {
+                    roleOperationRest.GET({params: {'roleId.equals': id, page: 0, size: 2000}}).then(res => {
 
                         const group = findAllOperationTypesGroupByModelName(allOperationPermission)
 
@@ -302,7 +302,7 @@
 
                     initMenuMap(menuData)
 
-                    menuRest.GET({params: {'roles.equals': [id]}}).then(res => {
+                    menuRest.GET({params: {'roles.equals': id, page: 0, size: 2000}}).then(res => {
                         const checkedMenus = res.content
                         this.preCheckedMenus = JSON.parse(JSON.stringify(checkedMenus))
                         checkedMenus && checkedMenus.length && checkMenu(menuData, checkedMenus.map(menu => menu.id))

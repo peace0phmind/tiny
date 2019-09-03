@@ -20,7 +20,7 @@ const model = {
     readonly: false,
     unique: false,
     collection: true,
-    modelType: 'TreeTest',
+    modelType: 'COMMON',
     referenceMode: 'manyToMany',
     bidirectional: true,
     referModelAttribute: 'treeTestItems',
@@ -28,6 +28,7 @@ const model = {
     tree: true,
     primaryKey: 'id',
     primaryKeyType: 'Long',
+    modelName: 'TreeTest',
     componentRelativePath: 'TreeTest',
     componentName: 'c-tny-tree-tests',
   }
