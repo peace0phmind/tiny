@@ -21,7 +21,7 @@ export default {
 
   render() {
 
-    const {item: {prop, max, min, precision, placeholder}} = this
+    const {item: {prop, max, min, precision, placeholder, readonly: _readonly}} = this
     if (this.readonly) {
       return <span>{this.formModel[prop] || '-'}</span>
     } else return (
@@ -30,7 +30,7 @@ export default {
                    step={precision && 0.1 || 1}
                    precision={precision}
                    v-model={this.formModel[prop]}
-                   disabled={this.disabled[prop]}
+                   disabled={this.disabled[prop] || _readonly}
                    placeholder={placeholder}
                    vOn:on-change={(val) => this.onChange(val)}
                    vOn:on-focus={(event) => this.onFocus()}

@@ -21,7 +21,7 @@ export default {
 
   render() {
 
-    let {item: {prop, max, min, precision, showInput}} = this
+    let {item: {prop, max, min, precision, showInput, readonly: _readonly}} = this
 
     if (showInput === undefined) showInput = true
     if (this.readonly) {
@@ -31,7 +31,7 @@ export default {
               max={max}
               min={min}
               step={precision && 0.1 || 1}
-              disabled={this.disabled[prop]}
+              disabled={this.disabled[prop] || _readonly}
               show-input={showInput}
               vOn:on-change={(val) => this.onChange(val)}
               vOn:on-input={(val) => this.onChanging(val)}

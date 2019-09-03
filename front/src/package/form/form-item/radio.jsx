@@ -25,13 +25,13 @@ export default {
 
   render() {
 
-    const {item: {prop, enumName}, enums} = this
+    const {item: {prop, enumName, readonly: _readonly}, enums} = this
 
     if (this.isEnum) {
       if (this.readonly) {
         return <span>{enums[enumName][this.formModel[prop]].name || '-'}</span>
       } else return (
-        <RadioGroup v-model={this.formModel[prop]} vOn:on-change={(val) => this.onChange}>
+        <RadioGroup v-model={this.formModel[prop]} disabled={this.disabled[prop] || _readonly} vOn:on-change={(val) => this.onChange}>
           {
             Object.keys(enums[enumName]).map(k => {
               return (

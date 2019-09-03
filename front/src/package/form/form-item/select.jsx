@@ -50,7 +50,7 @@ export default {
 
   render() {
 
-    const {item: {prop, enumName, label}, enums, primarykey, placeholder, notFoundText, prefixIcon} = this
+    const {item: {prop, enumName, label, primarykey, placeholder, notFoundText, prefixIcon, readonly: _readonly}, enums} = this
 
     const attrs = {}
     prefixIcon && (attrs.prefixIcon = prefixIcon)
@@ -62,7 +62,7 @@ export default {
         <Select v-model={this.formModel[prop]}
                 multiple={this.isMultiple}
                 placeholder={placeholder}
-                disabled={this.disabled[prop]}
+                disabled={this.disabled[prop] || _readonly}
                 not-found-text={notFoundText && notFoundText || '当前无数据'}
                 transfer
                 clearable

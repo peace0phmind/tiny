@@ -21,7 +21,7 @@ export default {
   },
 
   render() {
-    const {placeholder, prefixIcon, suffixIcon, rows, prop} = this.item
+    const {placeholder, prefixIcon, suffixIcon, rows, prop, readonly: _readonly} = this.item
 
     const attrs = {}
     prefixIcon && (attrs.prefixIcon = prefixIcon)
@@ -33,7 +33,7 @@ export default {
       <Input type={this.type}
              v-model={this.formModel[prop]}
              placeholder={placeholder}
-             disabled={this.disabled[prop]}
+             disabled={this.disabled[prop] || _readonly}
              attrs={attrs}
              clearable
              vOn:on-enter={(event) => this.onEnter()}

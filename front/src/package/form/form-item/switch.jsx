@@ -21,7 +21,7 @@ export default {
 
   render() {
 
-    const {item: {prop, trueValue, falseValue}} = this
+    const {item: {prop, trueValue, falseValue, readonly: _readonly}} = this
     if (this.readonly) {
       return <span>{this.formModel[prop] && '是' || '否'}</span>
     } else {
@@ -33,7 +33,7 @@ export default {
       if (trueValue && falseValue) {
         return (
           <i-switch v-model={this.formModel[prop]}
-                    disabled={this.disabled[prop]}
+                    disabled={this.disabled[prop] || _readonly}
                     vOn:on-change={(val) => this.onChange(val)}
                     scopedSlots={switchSlot} size={'large'}
           >

@@ -38,10 +38,10 @@ export default {
 
   render() {
 
-    const {item: {prop, label}, primarykey, placeholder} = this
+    const {item: {prop, label, placeholder, primarykey, readonly: _readonly}} = this
 
     return (
-      <Cascader v-model={this.formModel[prop]} disabled={this.disabled[prop]} data={this.cascaderData} filterable
+      <Cascader v-model={this.formModel[prop]} disabled={this.disabled[prop] || _readonly} data={this.cascaderData} filterable
                 change-on-select
                 clearable placeholder={placeholder} selectModel={true} vOn:on-select-model={(e) => this.onSelectModel()}
                 vOn:on-visible-change={(value) => this.onOpenChange(value)}></Cascader>

@@ -21,13 +21,13 @@ export default {
 
   render() {
 
-    const {item: {prop, placeholder}} = this
+    const {item: {prop, placeholder, readonly: _readonly}} = this
     if (this.readonly) {
       return <span>{this.formModel[prop] || '-'}</span>
     } else return (
       <TimePicker v-model={this.formModel[prop]}
                   placeholder={placeholder}
-                  disabled={this.disabled[prop]}
+                  disabled={this.disabled[prop] || _readonly}
                   clearable
                   transfer
                   type={'time'}

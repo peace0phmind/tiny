@@ -52,7 +52,7 @@ export default {
           <div>
             <div {...{style: {marginBottom: '10px'}}}>
               <Button type="primary" disabled={this.readonly}
-                      onClick={() => this.handleAddOneToManyNotExist(prop, formLayout)}
+                      onClick={() => this.handleAddOneToManyNotExist(prop, formLayout, item)}
                       v-permission:create_resource={resourcePath}><i
                 className={'el-icon-plus'}></i>新增
               </Button>
@@ -78,12 +78,14 @@ export default {
       Object.entries(row).forEach(([key, value]) => {
         this.$refs[`${prop}Form`].setValue(key, value)
       })
+      this.$refs[`${prop}Form`].setValue(item.referModelAttribute, this.id)
+      this.$refs[`${prop}Form`].disableFormItems(true, item.referModelAttribute)
       const index = this[`${prop}Data`].findIndex(data => _.isEqual(row, data))
       this[`${prop}Index`] = index
       this._watcher.update()
     },
 
-    handleAddOneToManyNotExist(prop, formLayout) {
+    handleAddOneToManyNotExist(prop, formLayout, item) {
       this[`${prop}Mode`] = modes.CREATE
       this[`${prop}ModalShow`] = true
       const maxSizeOfRow = Math.max(...(formLayout.map(row => row.length)))
@@ -94,6 +96,8 @@ export default {
         this[`${prop}ModalWidth`] = 760
       }
       this.$refs[`${prop}Form`].init()
+      this.$refs[`${prop}Form`].setValue(item.referModelAttribute, this.id)
+      this.$refs[`${prop}Form`].disableFormItems(true, item.referModelAttribute)
       this[`${prop}Index`] = undefined
       this._watcher.update()
     },
