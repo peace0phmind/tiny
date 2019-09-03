@@ -37,6 +37,7 @@ const model = {
     required: false,
     readonly: false,
     unique: false,
+    precision: 2,
   },
   timeType: {
     name: '时间类型',
