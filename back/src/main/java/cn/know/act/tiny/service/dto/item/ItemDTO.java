@@ -12,7 +12,6 @@ import javax.annotation.Generated;
 import java.util.Optional;
 import javax.validation.constraints.Size;
 import cn.know.act.tiny.service.dto.TestDTO;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 /**
  * 测试item
@@ -21,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @EqualsAndHashCode
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "_type")
 public class ItemDTO extends BaseDTO<UUID> implements Serializable {
 
     @Generated(IRW.CODE_GENERATOR)
