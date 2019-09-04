@@ -28,6 +28,7 @@ export default {
       extraSubmitParams: {},
       extraParams: {},
       modalShow: false,
+      viewModal: false,
       submitLoading: false,
       id: undefined,
       sortCondition: undefined,
@@ -266,6 +267,14 @@ export default {
       this.$nextTick(() => {
         this.$refs.form.init(id)
         if (this.afterEdit) this.afterEdit(id)
+      })
+    },
+    view(id) {
+      this.title = '查看'
+      this.id = id
+      this.viewModal = true
+      this.$nextTick(() => {
+        this.$refs.viewForm.init(id)
       })
     },
     cancel() {
