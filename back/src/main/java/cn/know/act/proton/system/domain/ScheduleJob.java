@@ -111,6 +111,7 @@ public class ScheduleJob implements AuditDate, AuditUser, Serializable {
      * 日志
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @OneToMany(mappedBy = "job")
     private Set<ScheduleJobLog> logs = new LinkedHashSet<>();
 
@@ -134,6 +135,7 @@ public class ScheduleJob implements AuditDate, AuditUser, Serializable {
      * 创建人
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creator_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     @CreatedBy
@@ -143,6 +145,7 @@ public class ScheduleJob implements AuditDate, AuditUser, Serializable {
      * 修改人
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "modifier_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     @LastModifiedBy

@@ -27,6 +27,7 @@ public abstract class RolePermissionCriteria implements Serializable {
      * 权限
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private UUIDFilter role;
 
     @Generated(IRW.CODE_GENERATOR)

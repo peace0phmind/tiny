@@ -69,12 +69,14 @@ public class UserDTO extends BaseDTO<UUID> implements Serializable {
      * 部门
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private Optional<DepartmentDTO> department;
 
     /**
      * 角色列表
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @JsonDeserialize(as = LinkedHashSet.class)
     private Set<RoleDTO> roles;
 

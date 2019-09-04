@@ -28,6 +28,9 @@ import javax.persistence.ForeignKey;
 import javax.persistence.ConstraintMode;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Max;
+import java.math.BigDecimal;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.DecimalMax;
 import java.time.LocalTime;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -80,6 +83,7 @@ public class Test implements AuditDate, AuditUser, SoftDelete, _Version, Seriali
      * 模板类型
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "template_type_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private TestType templateType;
@@ -97,10 +101,10 @@ public class Test implements AuditDate, AuditUser, SoftDelete, _Version, Seriali
      * decimal类型
      */
     @Generated(IRW.CODE_GENERATOR)
-    @Min(value = 20)
-    @Max(value = 2000)
-    @Column(name = "decimal_type")
-    private Integer decimalType;
+    @DecimalMin(value = "20")
+    @DecimalMax(value = "2000")
+    @Column(name = "decimal_type", precision = 4, scale = 2, columnDefinition = "Decimal(4, 2)")
+    private BigDecimal decimalType;
 
     /**
      * 时间类型
@@ -142,6 +146,7 @@ public class Test implements AuditDate, AuditUser, SoftDelete, _Version, Seriali
      * 多值枚举
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @Enumerated(value = EnumType.STRING)
     @Column(name = "multi_enum", length = 10)
     @ElementCollection
@@ -152,6 +157,7 @@ public class Test implements AuditDate, AuditUser, SoftDelete, _Version, Seriali
      * 测试items
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @OneToMany(mappedBy = "test")
     private Set<Item> items = new LinkedHashSet<>();
 
@@ -175,6 +181,7 @@ public class Test implements AuditDate, AuditUser, SoftDelete, _Version, Seriali
      * 创建人
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creator_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     @CreatedBy
@@ -184,6 +191,7 @@ public class Test implements AuditDate, AuditUser, SoftDelete, _Version, Seriali
      * 修改人
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "modifier_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     @LastModifiedBy
@@ -279,12 +287,12 @@ public class Test implements AuditDate, AuditUser, SoftDelete, _Version, Seriali
     }
 
     @Generated(IRW.CODE_GENERATOR)
-    public Integer getDecimalType() {
+    public BigDecimal getDecimalType() {
         return decimalType;
     }
 
     @Generated(IRW.CODE_GENERATOR)
-    public void setDecimalType(Integer decimalType) {
+    public void setDecimalType(BigDecimal decimalType) {
         this.decimalType = decimalType;
     }
 

@@ -133,6 +133,7 @@ public class User implements Serializable, UserDetails {
      * 部门
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private Department department;
@@ -141,6 +142,7 @@ public class User implements Serializable, UserDetails {
      * 角色列表
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @ManyToMany()
     @JoinTable(name = "sys_role_user", indexes = { @Index(name = "sys_role_user_user_id", columnList = "user_id"), @Index(name = "sys_role_user_role_id", columnList = "role_id") }, foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT), joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseForeignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Set<Role> roles = new LinkedHashSet<>();

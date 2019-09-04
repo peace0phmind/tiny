@@ -70,12 +70,14 @@ public class MenuCriteria implements Serializable {
      * 角色
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private UUIDFilter roles;
 
     /**
      * 父节点
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private UUIDFilter _parent;
 
     @Generated(IRW.CODE_GENERATOR)

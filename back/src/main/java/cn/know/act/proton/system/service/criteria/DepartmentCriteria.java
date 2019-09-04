@@ -39,6 +39,7 @@ public class DepartmentCriteria implements Serializable {
      * 父节点
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private UUIDFilter _parent;
 
     @Generated(IRW.CODE_GENERATOR)

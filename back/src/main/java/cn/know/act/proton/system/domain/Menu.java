@@ -113,6 +113,7 @@ public class Menu extends TreeNode<Menu, UUID> implements Serializable {
      * 角色
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @ManyToMany()
     @JoinTable(name = "sys_menu_role", indexes = { @Index(name = "sys_menu_role_menu_id", columnList = "menu_id"), @Index(name = "sys_menu_role_role_id", columnList = "role_id") }, foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT), joinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "id"), inverseForeignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Set<Role> roles = new LinkedHashSet<>();
@@ -121,6 +122,7 @@ public class Menu extends TreeNode<Menu, UUID> implements Serializable {
      * 父节点
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "_parent_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private Menu _parent;

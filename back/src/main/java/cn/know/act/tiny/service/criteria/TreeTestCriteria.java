@@ -34,6 +34,7 @@ public class TreeTestCriteria implements Serializable {
      * 测试类型
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private LongFilter testType;
 
     /**
@@ -76,12 +77,14 @@ public class TreeTestCriteria implements Serializable {
      * tree测试item
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private UUIDFilter treeTestItems;
 
     /**
      * 父节点
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private LongFilter _parent;
 
     /**
@@ -100,12 +103,14 @@ public class TreeTestCriteria implements Serializable {
      * 创建人
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private UUIDFilter creator;
 
     /**
      * 修改人
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private UUIDFilter modifier;
 
     /**

@@ -84,6 +84,7 @@ public class Role implements Serializable, GrantedAuthority {
      * 权限
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @OneToMany(mappedBy = "role")
     private Set<RolePermission> permissions = new LinkedHashSet<>();
 
@@ -99,6 +100,7 @@ public class Role implements Serializable, GrantedAuthority {
      * 菜单
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @ManyToMany()
     @JoinTable(name = "sys_menu_role", indexes = { @Index(name = "sys_menu_role_role_id", columnList = "role_id"), @Index(name = "sys_menu_role_menu_id", columnList = "menu_id") }, foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT), joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"), inverseForeignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT), inverseJoinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "id"))
     private Set<Menu> menus = new LinkedHashSet<>();
@@ -107,6 +109,7 @@ public class Role implements Serializable, GrantedAuthority {
      * 用户
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @ManyToMany()
     @JoinTable(name = "sys_role_user", indexes = { @Index(name = "sys_role_user_role_id", columnList = "role_id"), @Index(name = "sys_role_user_user_id", columnList = "user_id") }, foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT), joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"), inverseForeignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT), inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
     private Set<User> users = new LinkedHashSet<>();

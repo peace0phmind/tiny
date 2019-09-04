@@ -33,12 +33,14 @@ public abstract class RolePermissionDTO extends BaseDTO<UUID> implements Seriali
      * 权限
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private Optional<PermissionDTO> permission;
 
     /**
      * 权限
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private Optional<RoleDTO> role;
 
     @Generated(IRW.CODE_GENERATOR)

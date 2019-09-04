@@ -66,6 +66,7 @@ public class ScheduleJobCriteria implements Serializable {
      * 日志
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private LongFilter logs;
 
     /**
@@ -84,12 +85,14 @@ public class ScheduleJobCriteria implements Serializable {
      * 创建人
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private UUIDFilter creator;
 
     /**
      * 修改人
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private UUIDFilter modifier;
 
     @Generated(IRW.CODE_GENERATOR)

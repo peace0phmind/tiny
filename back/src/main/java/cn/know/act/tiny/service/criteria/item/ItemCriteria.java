@@ -35,6 +35,7 @@ public class ItemCriteria implements Serializable {
      * test
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private LongFilter test;
 
     @Generated(IRW.CODE_GENERATOR)

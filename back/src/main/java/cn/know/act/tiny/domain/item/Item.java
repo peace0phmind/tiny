@@ -68,6 +68,7 @@ public class Item implements Serializable {
      * test
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "test_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private Test test;

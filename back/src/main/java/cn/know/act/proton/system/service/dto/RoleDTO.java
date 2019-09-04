@@ -56,6 +56,7 @@ public class RoleDTO extends BaseDTO<UUID> implements Serializable {
      * 权限
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @JsonDeserialize(as = LinkedHashSet.class)
     private Set<RolePermissionDTO> permissions;
 
@@ -69,6 +70,7 @@ public class RoleDTO extends BaseDTO<UUID> implements Serializable {
      * 菜单
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @JsonDeserialize(as = LinkedHashSet.class)
     private Set<MenuDTO> menus;
 
@@ -76,6 +78,7 @@ public class RoleDTO extends BaseDTO<UUID> implements Serializable {
      * 用户
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @JsonDeserialize(as = LinkedHashSet.class)
     private Set<UserDTO> users;
 

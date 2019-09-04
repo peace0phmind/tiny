@@ -9,6 +9,7 @@ import cn.know.act.proton.core.util.IRW;
 import javax.annotation.Generated;
 import cn.know.act.proton.core.service.filter.LongFilter;
 import cn.know.act.proton.core.service.filter.IntegerFilter;
+import cn.know.act.proton.core.service.filter.BigDecimalFilter;
 import cn.know.act.proton.core.service.filter.LocalTimeFilter;
 import cn.know.act.proton.core.service.filter.LocalDateFilter;
 import cn.know.act.proton.core.service.filter.LocalDateTimeFilter;
@@ -34,6 +35,7 @@ public class TestCriteria implements Serializable {
      * 模板类型
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private LongFilter templateType;
 
     /**
@@ -46,7 +48,7 @@ public class TestCriteria implements Serializable {
      * decimal类型
      */
     @Generated(IRW.CODE_GENERATOR)
-    private IntegerFilter decimalType;
+    private BigDecimalFilter decimalType;
 
     /**
      * 时间类型
@@ -82,12 +84,14 @@ public class TestCriteria implements Serializable {
      * 多值枚举
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private Test.MultiEnumFilter multiEnums;
 
     /**
      * 测试items
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private UUIDFilter items;
 
     /**
@@ -106,12 +110,14 @@ public class TestCriteria implements Serializable {
      * 创建人
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private UUIDFilter creator;
 
     /**
      * 修改人
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private UUIDFilter modifier;
 
     /**
@@ -151,12 +157,12 @@ public class TestCriteria implements Serializable {
     }
 
     @Generated(IRW.CODE_GENERATOR)
-    public IntegerFilter getDecimalType() {
+    public BigDecimalFilter getDecimalType() {
         return decimalType;
     }
 
     @Generated(IRW.CODE_GENERATOR)
-    public void setDecimalType(IntegerFilter decimalType) {
+    public void setDecimalType(BigDecimalFilter decimalType) {
         this.decimalType = decimalType;
     }
 

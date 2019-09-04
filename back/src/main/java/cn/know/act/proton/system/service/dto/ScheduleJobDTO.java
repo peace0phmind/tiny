@@ -74,6 +74,7 @@ public class ScheduleJobDTO extends BaseDTO<UUID> implements Serializable {
      * 日志
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @JsonDeserialize(as = LinkedHashSet.class)
     private Set<ScheduleJobLogDTO> logs;
 
@@ -93,12 +94,14 @@ public class ScheduleJobDTO extends BaseDTO<UUID> implements Serializable {
      * 创建人
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private Optional<UserDTO> creator;
 
     /**
      * 修改人
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private Optional<UserDTO> modifier;
 
     @Generated(IRW.CODE_GENERATOR)

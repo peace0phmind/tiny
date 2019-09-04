@@ -41,6 +41,7 @@ public class ItemDTO extends BaseDTO<UUID> implements Serializable {
      * test
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private Optional<TestDTO> test;
 
     @Generated(IRW.CODE_GENERATOR)

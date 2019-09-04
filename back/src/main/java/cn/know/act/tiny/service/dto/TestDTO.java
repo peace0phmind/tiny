@@ -12,6 +12,9 @@ import java.util.Optional;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Max;
+import java.math.BigDecimal;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.DecimalMax;
 import java.time.LocalTime;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -44,6 +47,7 @@ public class TestDTO extends BaseDTO<Long> implements Serializable {
      * 模板类型
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private Optional<TestTypeDTO> templateType;
 
     /**
@@ -56,7 +60,7 @@ public class TestDTO extends BaseDTO<Long> implements Serializable {
      * decimal类型
      */
     @Generated(IRW.CODE_GENERATOR)
-    private Optional<@Min(value = 20) @Max(value = 2000) Integer> decimalType;
+    private Optional<@DecimalMin(value = "20") @DecimalMax(value = "2000") BigDecimal> decimalType;
 
     /**
      * 时间类型
@@ -92,6 +96,7 @@ public class TestDTO extends BaseDTO<Long> implements Serializable {
      * 多值枚举
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @JsonDeserialize(as = LinkedHashSet.class)
     private Set<Test.MultiEnum> multiEnums;
 
@@ -99,6 +104,7 @@ public class TestDTO extends BaseDTO<Long> implements Serializable {
      * 测试items
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @JsonDeserialize(as = LinkedHashSet.class)
     private Set<ItemDTO> items;
 
@@ -118,12 +124,14 @@ public class TestDTO extends BaseDTO<Long> implements Serializable {
      * 创建人
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private Optional<UserDTO> creator;
 
     /**
      * 修改人
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private Optional<UserDTO> modifier;
 
     /**
@@ -200,12 +208,12 @@ public class TestDTO extends BaseDTO<Long> implements Serializable {
     }
 
     @Generated(IRW.CODE_GENERATOR)
-    public Optional<Integer> getDecimalType() {
+    public Optional<BigDecimal> getDecimalType() {
         return decimalType;
     }
 
     @Generated(IRW.CODE_GENERATOR)
-    public void setDecimalType(Optional<Integer> decimalType) {
+    public void setDecimalType(Optional<BigDecimal> decimalType) {
         this.decimalType = decimalType;
     }
 

@@ -545,7 +545,7 @@ export const mixinModel = (model, modelSetting) => {
 
   Object.keys(model).forEach(key => {
     const {collection} = model[key]
-    if (collection) model[key].viewMode = 'form_table'
+    if (collection) model[key].viewMode = model[key].viewMode || 'form_table'
   })
 }
 

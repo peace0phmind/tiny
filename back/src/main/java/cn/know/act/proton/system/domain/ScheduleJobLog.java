@@ -45,6 +45,7 @@ public class ScheduleJobLog implements Serializable {
      * 定时任务
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "job_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private ScheduleJob job;

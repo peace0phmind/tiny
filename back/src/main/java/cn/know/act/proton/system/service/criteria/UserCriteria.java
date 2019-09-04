@@ -60,12 +60,14 @@ public class UserCriteria implements Serializable {
      * 部门
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private UUIDFilter department;
 
     /**
      * 角色列表
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private UUIDFilter roles;
 
     /**

@@ -43,6 +43,7 @@ public class TreeTestDTO extends BaseDTO<Long> implements Serializable {
      * 测试类型
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private Optional<TestTypeDTO> testType;
 
     /**
@@ -85,6 +86,7 @@ public class TreeTestDTO extends BaseDTO<Long> implements Serializable {
      * tree测试item
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @JsonDeserialize(as = LinkedHashSet.class)
     private Set<TreeItemDTO> treeTestItems;
 
@@ -92,12 +94,14 @@ public class TreeTestDTO extends BaseDTO<Long> implements Serializable {
      * 父节点
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private Optional<TreeTestDTO> _parent;
 
     /**
      * 子节点
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private List<TreeTestDTO> _children;
 
     /**
@@ -134,12 +138,14 @@ public class TreeTestDTO extends BaseDTO<Long> implements Serializable {
      * 创建人
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private Optional<UserDTO> creator;
 
     /**
      * 修改人
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private Optional<UserDTO> modifier;
 
     /**

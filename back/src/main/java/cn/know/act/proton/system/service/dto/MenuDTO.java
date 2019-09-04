@@ -80,6 +80,7 @@ public class MenuDTO extends BaseDTO<UUID> implements Serializable {
      * 角色
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @JsonDeserialize(as = LinkedHashSet.class)
     private Set<RoleDTO> roles;
 
@@ -87,12 +88,14 @@ public class MenuDTO extends BaseDTO<UUID> implements Serializable {
      * 父节点
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private Optional<MenuDTO> _parent;
 
     /**
      * 子节点
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private List<MenuDTO> _children;
 
     /**

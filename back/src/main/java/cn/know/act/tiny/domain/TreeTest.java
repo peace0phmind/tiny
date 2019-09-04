@@ -75,6 +75,7 @@ public class TreeTest extends TreeNode<TreeTest, Long> implements AuditDate, Aud
      * 测试类型
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "test_type_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private TestType testType;
@@ -125,6 +126,7 @@ public class TreeTest extends TreeNode<TreeTest, Long> implements AuditDate, Aud
      * tree测试item
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @ManyToMany()
     @JoinTable(name = "tny_tree_item_tree_test", indexes = { @Index(name = "tny_tree_item_tree_test_tree_test_id", columnList = "tree_test_id"), @Index(name = "tny_tree_item_tree_test_tree_item_id", columnList = "tree_item_id") }, foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT), joinColumns = @JoinColumn(name = "tree_test_id", referencedColumnName = "id"), inverseForeignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT), inverseJoinColumns = @JoinColumn(name = "tree_item_id", referencedColumnName = "id"))
     private Set<TreeItem> treeTestItems = new LinkedHashSet<>();
@@ -133,6 +135,7 @@ public class TreeTest extends TreeNode<TreeTest, Long> implements AuditDate, Aud
      * 父节点
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "_parent_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private TreeTest _parent;
@@ -157,6 +160,7 @@ public class TreeTest extends TreeNode<TreeTest, Long> implements AuditDate, Aud
      * 创建人
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creator_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     @CreatedBy
@@ -166,6 +170,7 @@ public class TreeTest extends TreeNode<TreeTest, Long> implements AuditDate, Aud
      * 修改人
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "modifier_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     @LastModifiedBy

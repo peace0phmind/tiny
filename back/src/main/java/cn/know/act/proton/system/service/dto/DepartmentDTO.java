@@ -47,12 +47,14 @@ public class DepartmentDTO extends BaseDTO<UUID> implements Serializable {
      * 父节点
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private Optional<DepartmentDTO> _parent;
 
     /**
      * 子节点
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private List<DepartmentDTO> _children;
 
     /**

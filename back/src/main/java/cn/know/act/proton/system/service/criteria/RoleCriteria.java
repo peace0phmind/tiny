@@ -47,6 +47,7 @@ public class RoleCriteria implements Serializable {
      * 权限
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private UUIDFilter permissions;
 
     /**
@@ -59,12 +60,14 @@ public class RoleCriteria implements Serializable {
      * 菜单
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private UUIDFilter menus;
 
     /**
      * 用户
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private UUIDFilter users;
 
     @Generated(IRW.CODE_GENERATOR)

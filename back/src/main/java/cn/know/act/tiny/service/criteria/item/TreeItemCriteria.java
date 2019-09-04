@@ -35,6 +35,7 @@ public class TreeItemCriteria implements Serializable {
      * test
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private LongFilter tests;
 
     @Generated(IRW.CODE_GENERATOR)

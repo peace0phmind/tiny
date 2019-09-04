@@ -70,6 +70,7 @@ public class TreeItem implements Serializable {
      * test
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @ManyToMany()
     @JoinTable(name = "tny_tree_item_tree_test", indexes = { @Index(name = "tny_tree_item_tree_test_tree_item_id", columnList = "tree_item_id"), @Index(name = "tny_tree_item_tree_test_tree_test_id", columnList = "tree_test_id") }, foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT), joinColumns = @JoinColumn(name = "tree_item_id", referencedColumnName = "id"), inverseForeignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT), inverseJoinColumns = @JoinColumn(name = "tree_test_id", referencedColumnName = "id"))
     private Set<TreeTest> tests = new LinkedHashSet<>();

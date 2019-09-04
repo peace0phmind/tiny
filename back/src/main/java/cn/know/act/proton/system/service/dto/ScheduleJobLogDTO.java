@@ -28,6 +28,7 @@ public class ScheduleJobLogDTO extends BaseDTO<Long> implements Serializable {
      * 定时任务
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     private Optional<ScheduleJobDTO> job;
 
     /**

@@ -44,6 +44,7 @@ public class TreeItemDTO extends BaseDTO<UUID> implements Serializable {
      * test
      */
     @Generated(IRW.CODE_GENERATOR)
+    @ToString.Exclude
     @JsonDeserialize(as = LinkedHashSet.class)
     private Set<TreeTestDTO> tests;
 
