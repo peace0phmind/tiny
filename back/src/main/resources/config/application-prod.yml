@@ -1,7 +1,7 @@
 logging:
   level:
     ROOT: INFO
-    cn.know.act.proto: INFO
+    cn.know.act.tiny: INFO
 #    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 #    org.hibernate.type.descriptor.sql.BasicExtractor: DEBUG
 
@@ -91,7 +91,7 @@ proton:
         # - In the JHipster Registry (which includes a Spring Cloud Config server)
         # - In a separate `application-prod.yml` file, in the same folder as your executable JAR file
         # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET` environment variable
-        base64-secret: N2VlZjc2MTk2MjRiNDI0ZmUxYWExNjk3ZjM1YjA1OTFmYjJkNTU2YTdkODgyMDQ5NTBlMjU2M2E2ZGQxNDIwMDkzNWRiMGU0ODFiZWRjYmY2NjI4M2FlYWNiOTdkNWUxOGJjMWNmNDU2MWQzMzhlYjRlZGRmNjc3ZTFiZDc2NjA=
+        base64-secret: yYt3OtKRhGzTZy/1emOZNgSYFElLGZXPTCjo4VrK06mlfF1gqGE61DhbdJ3X3BMw7x8TY9UBEhWagVV1Q4a6OJQ8ry2PYjR3j8HZe9uRvlzVaD7tY334SoPC+296F294baUNkC8HcGXBZJC/S8v9M230ky/TYl8KPyMYhK2VKdA=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000
