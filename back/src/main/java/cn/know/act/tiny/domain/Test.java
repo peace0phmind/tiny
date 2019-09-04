@@ -3,7 +3,7 @@ package cn.know.act.tiny.domain;
 import cn.know.act.proton.system.domain.AuditDate;
 import cn.know.act.proton.system.domain.AuditUser;
 import cn.know.act.proton.system.domain.SoftDelete;
-import cn.know.act.proton.system.domain.VersionLock;
+import cn.know.act.proton.system.domain._Version;
 import java.io.Serializable;
 import lombok.ToString;
 import lombok.NoArgsConstructor;
@@ -59,7 +59,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Table(name = "tny_test", indexes = { @Index(name = "idx_tny_test_template_type_id", columnList = "template_type_id"), @Index(name = "idx_tny_test_status_", columnList = "status_"), @Index(name = "idx_tny_test_creator_id", columnList = "creator_id"), @Index(name = "idx_tny_test_modifier_id", columnList = "modifier_id") })
 @Entity(name = "TnyTest")
-public class Test implements AuditDate, AuditUser, SoftDelete, VersionLock, Serializable {
+public class Test implements AuditDate, AuditUser, SoftDelete, _Version, Serializable {
 
     @Generated(IRW.CODE_GENERATOR)
     @Id
@@ -193,7 +193,7 @@ public class Test implements AuditDate, AuditUser, SoftDelete, VersionLock, Seri
     private LocalDateTime deletedDate;
 
     /**
-     * 版本锁
+     * 版本
      */
     @Generated(IRW.CODE_GENERATOR)
     @Column(name = "_version")

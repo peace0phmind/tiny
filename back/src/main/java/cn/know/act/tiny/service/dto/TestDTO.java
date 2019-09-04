@@ -132,7 +132,7 @@ public class TestDTO extends BaseDTO<Long> implements Serializable {
     private Optional<LocalDateTime> deletedDate;
 
     /**
-     * 版本锁
+     * 版本
      */
     @Generated(IRW.CODE_GENERATOR)
     private Optional<Integer> _version;

@@ -3,7 +3,7 @@ package cn.know.act.proton.system.domain;
 import cn.know.act.proton.core.util.IRW;
 import javax.annotation.Generated;
 
-public interface VersionLock {
+public interface _Version {
 
     @Generated(IRW.CODE_GENERATOR)
     Integer get_version();
