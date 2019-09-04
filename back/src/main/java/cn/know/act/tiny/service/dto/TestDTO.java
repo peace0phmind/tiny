@@ -131,6 +131,12 @@ public class TestDTO extends BaseDTO<Long> implements Serializable {
     @Generated(IRW.CODE_GENERATOR)
     private Optional<LocalDateTime> deletedDate;
 
+    /**
+     * 版本锁
+     */
+    @Generated(IRW.CODE_GENERATOR)
+    private Optional<Integer> _version;
+
     @Generated(IRW.CODE_GENERATOR)
     private String _instanceName;
 
@@ -320,5 +326,15 @@ public class TestDTO extends BaseDTO<Long> implements Serializable {
     @Generated(IRW.CODE_GENERATOR)
     public void setDeletedDate(Optional<LocalDateTime> deletedDate) {
         this.deletedDate = deletedDate;
+    }
+
+    @Generated(IRW.CODE_GENERATOR)
+    public Optional<Integer> get_version() {
+        return _version;
+    }
+
+    @Generated(IRW.CODE_GENERATOR)
+    public void set_version(Optional<Integer> _version) {
+        this._version = _version;
     }
 }

@@ -53,7 +53,6 @@ const formItemsSetting = {
     }
   },
   cronExpression:{
-    customRender: true,
     valid: {
       required: { // 校验必选
         value: true,

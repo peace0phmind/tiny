@@ -3,6 +3,7 @@ package cn.know.act.tiny.domain;
 import cn.know.act.proton.system.domain.AuditDate;
 import cn.know.act.proton.system.domain.AuditUser;
 import cn.know.act.proton.system.domain.SoftDelete;
+import cn.know.act.proton.system.domain.VersionLock;
 import java.io.Serializable;
 import lombok.ToString;
 import lombok.NoArgsConstructor;
@@ -43,6 +44,7 @@ import cn.know.act.proton.system.domain.User;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 import cn.know.act.proton.core.jpa.soft.delete.DeletedDate;
+import javax.persistence.Version;
 import java.text.MessageFormat;
 import cn.know.act.proton.core.service.filter.Filter;
 import java.util.Objects;
@@ -57,7 +59,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Table(name = "tny_test", indexes = { @Index(name = "idx_tny_test_template_type_id", columnList = "template_type_id"), @Index(name = "idx_tny_test_status_", columnList = "status_"), @Index(name = "idx_tny_test_creator_id", columnList = "creator_id"), @Index(name = "idx_tny_test_modifier_id", columnList = "modifier_id") })
 @Entity(name = "TnyTest")
-public class Test implements AuditDate, AuditUser, SoftDelete, Serializable {
+public class Test implements AuditDate, AuditUser, SoftDelete, VersionLock, Serializable {
 
     @Generated(IRW.CODE_GENERATOR)
     @Id
@@ -189,6 +191,14 @@ public class Test implements AuditDate, AuditUser, SoftDelete, Serializable {
     @Column(name = "deleted_date")
     @DeletedDate
     private LocalDateTime deletedDate;
+
+    /**
+     * 版本锁
+     */
+    @Generated(IRW.CODE_GENERATOR)
+    @Column(name = "_version")
+    @Version
+    private Integer _version;
 
     @Generated(IRW.CODE_GENERATOR)
     public void addItem(Item item) {
@@ -391,6 +401,16 @@ public class Test implements AuditDate, AuditUser, SoftDelete, Serializable {
     @Generated(IRW.CODE_GENERATOR)
     public void setDeletedDate(LocalDateTime deletedDate) {
         this.deletedDate = deletedDate;
+    }
+
+    @Generated(IRW.CODE_GENERATOR)
+    public Integer get_version() {
+        return _version;
+    }
+
+    @Generated(IRW.CODE_GENERATOR)
+    public void set_version(Integer _version) {
+        this._version = _version;
     }
 
     /**

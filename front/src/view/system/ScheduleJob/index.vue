@@ -20,7 +20,8 @@
 
     </s-operation-bar>
 
-    <e-table ref="table" :columns="meta._columns" :data="data" :enums="meta._enums" :meta="Object.assign(meta)" :resource-path="meta.restfulResourcePath"
+    <e-table ref="table" :columns="meta._columns" :data="data" :enums="meta._enums" :meta="Object.assign(meta)"
+             :resource-path="meta.restfulResourcePath"
              @on-sort-change="onSortChange" @on-selection-change="onselectionchange" @on-select="onSelect">
 
       <template slot="active" slot-scope="{row, index}">
@@ -83,17 +84,16 @@
            :mask-closable="false" :ok-text="meta.submitText" :loading="submitLoading">
 
       <zyx-form v-if="modalShow" ref="form" :form-items="meta._formItems" :form-layout="meta._formLayout"
-              :resource-path="meta.restfulResourcePath"
-              :enums="meta._enums" :props="meta.props" @on-cancel="cancel" @on-save="submit">
-        <FormItem slot="cronExpression" slot-scope="{formModel, item}" label="cron表达式" prop="cronExpression">
-          <Input v-model="formModel.cronExpression" style="width:100%" type="text" clearable
-                 @click.native="cronPopover=true">
-            <Icon type="ios-clock-outline" slot="prefix" @click="cronPopover=true" style="cursor: pointer;"/>
-          </Input>
+                :resource-path="meta.restfulResourcePath"
+                :enums="meta._enums" :props="meta.props" @on-cancel="cancel" @on-save="submit">
+        <Input slot="cronExpression" slot-scope="{formModel, item}" v-model="formModel.cronExpression"
+               style="width:100%" type="text" clearable
+               @click.native="cronPopover=true">
+          <Icon type="ios-clock-outline" slot="prefix" @click="cronPopover=true" style="cursor: pointer;"/>
           <el-popover v-model="cronPopover">
             <cron @change="changeCron" @close="cronPopover=false" i18n="cn" style="width: 623px;"></cron>
           </el-popover>
-        </FormItem>
+        </Input>
       </zyx-form>
     </Modal>
 

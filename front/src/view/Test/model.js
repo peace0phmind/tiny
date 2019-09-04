@@ -30,8 +30,6 @@ const model = {
     required: false,
     readonly: false,
     unique: false,
-    max: 1000,
-    min: 10
   },
   decimalType: {
     name: 'decimal类型',
@@ -39,9 +37,7 @@ const model = {
     required: false,
     readonly: false,
     unique: false,
-    max: 1000,
-    min: 10,
-    precision: 2
+    precision: 2,
   },
   timeType: {
     name: '时间类型',
