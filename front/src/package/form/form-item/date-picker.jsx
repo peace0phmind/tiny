@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import moment from 'moment'
 
 export default {
   name: 'zyx-date-picker',
@@ -24,7 +25,9 @@ export default {
 
     const {item: {prop, placeholder, readonly: _readonly}, type} = this
     if (this.readonly) {
-      return <span>{this.formModel[prop] || '-'}</span>
+      const val = this.formModel[prop]
+
+      return <span>{val && moment(val).format('YYYY-MM-DD HH:mm:ss') || '-'}</span>
     } else return (
       <DatePicker v-model={this.formModel[prop]}
                   placeholder={placeholder}

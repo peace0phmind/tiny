@@ -134,7 +134,7 @@ export default {
 
       return (
         <div {...{style: {margin: '8px 0px', fontSize: '14px'}}}><b>{label}:</b>
-          <span {...{style: {color: '#373737'}}}>{formItemNode}</span></div>
+          <span {...{style: {color: '#373737', marginLeft: '10px'}}}>{formItemNode}</span></div>
       )
 
     } else {

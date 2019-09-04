@@ -26,7 +26,8 @@ export default {
       treePool: this.treeModelPool,
       treeData: [],
       treeNodeModalShow: false,
-      treeMap: {}
+      treeMap: {},
+      modelNames: {}
     }
   },
 
@@ -57,7 +58,22 @@ export default {
 
     if (this.isEnum) {
       if (this.readonly) {
-        return <span>{'-'}</span>
+        const val = this.formModel[prop]
+        if (this.isMultiple) {
+          if (val && val.length) {
+            return (
+              <span>
+                {val.map(v => {
+                  return (<span>{`${v && this.enums[enumName][v].name || ''}、`}</span>)
+                })}
+              </span>
+            )
+          } else {
+            return (<span>-</span>)
+          }
+        } else {
+          return <span>{val && this.enums[enumName][val].name || '-'}</span>
+        }
       } else return (
         <Select v-model={this.formModel[prop]}
                 multiple={this.isMultiple}
@@ -86,7 +102,13 @@ export default {
     } else {
       if (!this.isTree) {
         if (this.readonly) {
-          return <span>{this.formModel[prop]}</span>
+          const val = this.formModel[prop]
+          if (val && val !== null) {
+            this.initInstanceName(val)
+            return <span>{val && this.modelNames[val] || '-'}</span>
+          } else {
+            return <span>{'-'}</span>
+          }
         } else return (<Select v-model={this.formModel[prop]}
                                placeholder={placeholder}
                                disabled={this.disabled[prop]}
@@ -150,6 +172,14 @@ export default {
           this.modelOptions[this.item.prop] = this.modelOptions[this.item.prop] || []
           this.modelOptions[this.item.prop].push(res)
           this.$forceUpdate()
+        }
+      })
+    },
+    initInstanceName(id) {
+      const _rest = new Rest(this.item.resourcePath, this.$apiURL)
+      _rest.GET({uri: id}).then((res) => {
+        if (res) {
+          this.$set(this.modelNames, id, res._instanceName)
         }
       })
     },
