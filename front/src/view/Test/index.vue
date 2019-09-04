@@ -43,7 +43,7 @@
                      style="margin-right: 10px" v-permission:delete.resource="meta.restfulResourcePath"></el-link>
           </el-tooltip>
           <el-tooltip effect="dark" content="查看" placement="left">
-            <el-link icon="el-icon-edit" :underline="false" type="danger" @click="view(row.id, index)"
+            <el-link icon="el-icon-view" :underline="false" type="primary" @click="view(row.id, index)"
                      style="margin-right: 10px" v-permission:read.resource="meta.restfulResourcePath"></el-link>
           </el-tooltip>
 
