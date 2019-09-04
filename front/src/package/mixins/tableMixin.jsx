@@ -28,6 +28,7 @@ export default {
       extraSubmitParams: {},
       extraParams: {},
       modalShow: false,
+      viewModal: false,
       submitLoading: false,
       id: undefined,
       sortCondition: undefined,
@@ -52,7 +53,7 @@ export default {
 
     const {restfulResourcePath} = this.meta
     this.restTemplate = new Rest(restfulResourcePath, this.$apiURL)
-    if (!this.enterFromRoute && hasPermission(this.meta.restfulResourcePath, 'read')) {
+    if ((!this.enterFromRoute || process.env.NODE_ENV === 'development') && hasPermission(this.meta.restfulResourcePath, 'read')) {
       this.loadOnCreate && this.data === undefined && this.load()
     }
 
@@ -266,6 +267,14 @@ export default {
       this.$nextTick(() => {
         this.$refs.form.init(id)
         if (this.afterEdit) this.afterEdit(id)
+      })
+    },
+    view(id) {
+      this.title = '查看'
+      this.id = id
+      this.viewModal = true
+      this.$nextTick(() => {
+        this.$refs.viewForm.init(id)
       })
     },
     cancel() {

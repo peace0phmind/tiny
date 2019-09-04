@@ -42,7 +42,10 @@
             <el-link icon="el-icon-delete" :underline="false" type="danger" @click="handleRemove(row.id, index)"
                      style="margin-right: 10px" v-permission:delete.resource="meta.restfulResourcePath"></el-link>
           </el-tooltip>
-
+          <el-tooltip effect="dark" content="查看" placement="left">
+            <el-link icon="el-icon-view" :underline="false" type="primary" @click="view(row.id, index)"
+                     style="margin-right: 10px" v-permission:read.resource="meta.restfulResourcePath"></el-link>
+          </el-tooltip>
         </div>
 
       </template>
@@ -63,6 +66,17 @@
            :mask-closable="false" :ok-text="meta.submitText" :loading="submitLoading">
 
       <zyx-form v-if="modalShow" ref="form" :form-items="meta._formItems" :form-layout="meta._formLayout"
+                :resource-path="meta.restfulResourcePath" :enums="meta._enums" :props="meta.props" @on-cancel="cancel"
+                @on-save="submit">
+      </zyx-form>
+
+    </Modal>
+
+    <Modal :title="title" v-model="viewModal" :fullscreen="modalFullscreen"
+           :footer-hide="true" :width="modalWidth"
+           :mask-closable="false" :ok-text="meta.submitText" :loading="submitLoading">
+
+      <zyx-form :readonly="true" v-if="viewModal" ref="viewForm" :form-items="meta._formItems" :form-layout="meta._formLayout"
                 :resource-path="meta.restfulResourcePath" :enums="meta._enums" :props="meta.props" @on-cancel="cancel"
                 @on-save="submit">
       </zyx-form>
