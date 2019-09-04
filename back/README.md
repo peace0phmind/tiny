@@ -60,23 +60,34 @@ mvn clean compile liquibase:diff
 </configuration>
 ```
 
-当文件有修改后，执行mvn clean compile liquibase:diff时，可以分为三步理解：
+执行mvn clean compile liquibase:diff时，可以分为三步理解：
 
->1.首先执行mvn clean，清除liquibase配置中url指定${project.build.directory}路径下的target文件。
+>1.clean，清除target目录下的所有文件并删除target目录。
 
->2.接着执行mvn，对referenceUrl指定的${liquibase.packages}路径下的工程进行编译，liquibase按照url指定${project.build.directory}下编译出来的target文件生成全量脚本，
-全量脚本按changeLogFile指定的master.xml的管理，在指定位置生成。
+>2.compile，拷贝resources目录下的资源文件、配置文件等到classpath目录下，并且编译所有的java文件到classpath目录。
 
->3.最后执行mvn liquibase:diff，此时liquibase对比数据库配置的url对应的数据库和根据${project.build.directory}下编译出来的target文件之间的差别，并生成增量脚本到diffChangeLogFile指定目录下，
-为避免产生冲突，脚本采用当前时间戳为前缀，按照${maven.build.timestamp}_changelog.xml方式命名。
+>3.liquibase:diff, liquibase会以上述配置文件中的数据库配置为基础，和referenceUrl指定的${liquibase.packages}包路径下的所有entity的class文件进行比较，将增量的数据库脚本生成到diffChangeLogFile中指定的文件中。
+由于该处指定的是${maven.build.timestamp}_changelog.xml，所以对应的增量文件会按照时间戳加上_changelog.xml方式生成到工程resources目录下的config/liquibase/changelog目录中。由于这里第一步已经清除了url配置中的
+target/h2db/db下的数据库文件，所以该步骤相当于是用空数据库与全量的entity的class文件进行比较，所以这里生成的是全量的数据库脚本。
 
+>补充说明：数据库配置与driver，url，defaultSchemaName，username，password这5个变量相关，如果需要对mysql进行脚本生成，需要修改对应的配置参数。
 
 
 通过liquibase创建升级脚本
 ------
 - mvn clean
 - mvn          # 启动成功，系统加载完成
+- 通过control - c终止进程
 - mvn liquibase:diff
+
+
+>1. clean，清除target目录下的所有文件并删除target目录。此处是为了生成相对于现有脚本与现有entity做对比所做的对环境的清理工作（详见下面描述）。
+>2. mvn, 当target目录被清空，对应的数据库文件被删除的清空下，运行mvn，liquibase插件会自动从changeLogFile所指定的文件对数据库文件进行创建，其中会解析master.xml文件，加载initial_schema.xml文件，该文件会将数据库的表结构
+以及索引、外键、其他约束加载到数据库，另外还会加载initial_data.xml文件，将config/liquibase/data目录下的若干csv文件作为初始化数据加载到数据库中。当liquibase完成master.xml加载后，对应的在target/h2db/db/目录下生成的数据库
+文件已经加载完成。
+>3. 通过终止进程退出步骤2中的mvn命令
+>4. 使用liquibase:diff命令的详细原理参见全量脚本中的步骤3，此处由于是一个使用相对于master.xml文件状态的数据库以及entity的class进行比较的脚本，所以这里生成的是升级脚本。
+
 
 从h2中导出数据保存到文件
 ------
