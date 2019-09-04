@@ -111,7 +111,7 @@ export default {
           }
         } else return (<Select v-model={this.formModel[prop]}
                                placeholder={placeholder}
-                               disabled={this.disabled[prop]}
+                               disabled={this.disabled[prop] || _readonly}
                                clearable
                                vOn:on-clear={(e) => this.onClear()}
                                vOn:on-change={(value) => this.onChange(value)}
