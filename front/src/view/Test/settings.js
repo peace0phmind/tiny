@@ -21,6 +21,9 @@ const searchItemsSetting = {}
 const modelSetting = {
   name: {
     unique: true
+  },
+  templateType: {
+    required: true
   }
 }
 

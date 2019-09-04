@@ -6,15 +6,16 @@ export default {
   methods: {
     pluginRules() {
       this.normalFormItems.forEach(item => {
-        const {prop, valid, required, unique, equalsTo, minLength, maxLength, label, max, min, precision, type} = item
+        const {prop, valid, required, unique, equalsTo, minLength, maxLength, label, max, min, precision, type, primaryKeyType} = item
 
         this.$set(this.rules, prop, [])
 
         if (required) {
           this.rules[prop].push({
+            type: primaryKeyType === 'Long' && 'number' || 'string',
             required,
             message: `请填写${label}`,
-            trigger: 'blur'
+            trigger: 'change'
           })
         }
 
