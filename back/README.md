@@ -1,16 +1,19 @@
 启动应用
 --------
+```
 mvn
-
+```
 
 
 数据库的初始化, prod的时候使用，dev的时候直接使用本地h2数据库
 -----------
 使用下面脚本创建和初始化数据库，并给相关账号数据库访问权限：
-
+```
 mysql -uroot -p
-
+```
+```
 mysql>
+```
 
 ```
 create database proto default character set utf8;
@@ -29,6 +32,45 @@ GRANT ALL PRIVILEGES ON proto.* TO 'proto'@'%' WITH GRANT OPTION;
 通过liquibase创建初始化脚本
 ------
 mvn clean compile liquibase:diff
+
+>liquibase插件主要配置：
+```
+<configuration>
+    <!-- liquibase下的master.xml负责管理全量脚本的生成 -->
+    <changeLogFile>${project.basedir}/src/main/resources/config/liquibase/master.xml</changeLogFile>
+    
+    <!-- 配置增量脚本生成的位置，及命名 -->
+    <diffChangeLogFile>
+        ${project.basedir}/src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml
+    </diffChangeLogFile>
+    
+    <!-- 数据库相关配置 -->
+    <driver>org.h2.Driver</driver>
+    <url>jdbc:h2:file:${project.build.directory}/h2db/db/${project.name}</url>
+    <defaultSchemaName/>
+    <username>${project.name}</username>
+    <password/>
+    <!-- 指定liquibase参照的数据 -->
+    <referenceUrl>
+        hibernate:spring:${liquibase.packages}?dialect=org.hibernate.dialect.H2Dialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+    </referenceUrl>
+    <verbose>true</verbose>
+    <logging>debug</logging>
+    <contexts>!test</contexts>
+</configuration>
+```
+
+当文件有修改后，执行mvn clean compile liquibase:diff时，可以分为三步理解：
+
+>1.首先执行mvn clean，清除liquibase配置中url指定${project.build.directory}路径下的target文件。
+
+>2.接着执行mvn，对referenceUrl指定的${liquibase.packages}路径下的工程进行编译，liquibase按照url指定${project.build.directory}下编译出来的target文件生成全量脚本，
+全量脚本按changeLogFile指定的master.xml的管理，在指定位置生成。
+
+>3.最后执行mvn liquibase:diff，此时liquibase对比数据库配置的url对应的数据库和根据${project.build.directory}下编译出来的target文件之间的差别，并生成增量脚本到diffChangeLogFile指定目录下，
+为避免产生冲突，脚本采用当前时间戳为前缀，按照${maven.build.timestamp}_changelog.xml方式命名。
+
+
 
 通过liquibase创建升级脚本
 ------
