@@ -16,7 +16,7 @@
     <properties>
         <!-- Dependency versions -->
         <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
-        <proton.framework.version>1.0.17</proton.framework.version>
+        <proton.framework.version>1.0.16</proton.framework.version>
         <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>

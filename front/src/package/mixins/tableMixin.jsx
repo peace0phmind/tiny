@@ -292,47 +292,49 @@ export default {
 
       const vm = this
 
-      const _data = this.$refs.form.getFormDataIfValid()
-      if (_data) {
-        this.$refs.form.loadingSubmit = true
-        if (!this.submitToServer) {
-          // 提交到本地
-          this.modalShow = false
-          this.$Message.success('操作成功')
-          this.data.push(_data)
-          this.$emit('on-table-item-change', {
-            data: _data,
-            _mode: this.$refs.form.id && operationType.UPDATE || operationType.CREATE
-          })
-          this.$refs.form.loadingSubmit = false
-        } else {
-          // 提交到后台
-          this.submitLoading = true
-          let method = 'POST'
-          this.id && (method = 'PUT')
-          if (this.parentParmas && Object.keys(this.parentParmas).length > 0) {
-            Object.keys(this.parentParmas).forEach(key => {
-              const k = key.split('.')[0].substr(0, key.split('.')[0].length - 2)
-              _data[k] = {}
-              _data[k].id = this.parentParmas[key]
-            })
-          }
-          let extra = {}
-          if (this.extraSubmitParams) extra = {...this.extraSubmitParams}
-          this.restTemplate[method]({data: _data, params: {...extra}}).then((res) => {
+      this.$refs.form.getFormDataIfValid(_data => {
+        if (_data) {
+          this.$refs.form.loadingSubmit = true
+          if (!this.submitToServer) {
+            // 提交到本地
             this.modalShow = false
             this.$Message.success('操作成功')
+            this.data.push(_data)
+            this.$emit('on-table-item-change', {
+              data: _data,
+              _mode: this.$refs.form.id && operationType.UPDATE || operationType.CREATE
+            })
             this.$refs.form.loadingSubmit = false
-            this.load()
-            if (this.afterSubmit) this.afterSubmit()
-          }, (error) => {
-            this.$Message.error('提交失败')
-            this.$refs.form.loadingSubmit = false
-          })
+          } else {
+            // 提交到后台
+            this.submitLoading = true
+            let method = 'POST'
+            this.id && (method = 'PUT')
+            if (this.parentParmas && Object.keys(this.parentParmas).length > 0) {
+              Object.keys(this.parentParmas).forEach(key => {
+                const k = key.split('.')[0].substr(0, key.split('.')[0].length - 2)
+                _data[k] = {}
+                _data[k].id = this.parentParmas[key]
+              })
+            }
+            let extra = {}
+            if (this.extraSubmitParams) extra = {...this.extraSubmitParams}
+            this.restTemplate[method]({data: _data, params: {...extra}}).then((res) => {
+              this.modalShow = false
+              this.$Message.success('操作成功')
+              this.$refs.form.loadingSubmit = false
+              this.load()
+              if (this.afterSubmit) this.afterSubmit()
+            }, (error) => {
+              this.$Message.error('提交失败')
+              this.$refs.form.loadingSubmit = false
+            })
+          }
+        } else {
+          this.$Message.error('校验不通过，请重新填写!')
         }
-      } else {
-        this.$Message.error('校验不通过，请重新填写!')
-      }
+      })
+
     },
     handleRemove(id, index) {
       this.$Modal.confirm({

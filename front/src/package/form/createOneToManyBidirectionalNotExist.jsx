@@ -71,7 +71,7 @@ export default {
       if (this.formModel[prop] && this.formModel[prop].length) {
         const formIndex = this.formModel[prop].findIndex(data => _.isEqual(row, data))
         this[`${prop}FormIndex`] = formIndex
-      }else {
+      } else {
         this[`${prop}FormIndex`] = undefined
       }
       this[`${prop}ModalShow`] = true
@@ -114,34 +114,35 @@ export default {
     },
 
     saveOneToManyNotExist(item) {
-      let data = this.$refs[`${item.prop}Form`].getFormDataIfValid()
-      if (data) {
-        this.formModel[item.prop] = this.formModel[item.prop] || []
-        this[`${item.prop}Data`] = this[`${item.prop}Data`] || []
-        data = {...data, _mode: this[`${item.prop}Mode`]}
+      this.$refs[`${item.prop}Form`].getFormDataIfValid(data => {
+        if (data) {
+          this.formModel[item.prop] = this.formModel[item.prop] || []
+          this[`${item.prop}Data`] = this[`${item.prop}Data`] || []
+          data = {...data, _mode: this[`${item.prop}Mode`]}
 
-        const dataIndex = this[`${item.prop}DataIndex`]
-        const formIndex = this[`${item.prop}FormIndex`]
-        if (dataIndex >= 0) {
-          this[`${item.prop}Data`].splice(dataIndex, 1, data)
+          const dataIndex = this[`${item.prop}DataIndex`]
+          const formIndex = this[`${item.prop}FormIndex`]
+          if (dataIndex >= 0) {
+            this[`${item.prop}Data`].splice(dataIndex, 1, data)
+          } else {
+            this[`${item.prop}Data`].push(data)
+          }
+          if (formIndex >= 0) {
+            this.formModel[item.prop].splice(formIndex, 1, data)
+          } else {
+            this.formModel[item.prop].push(data)
+          }
+
+          const arr = JSON.parse(JSON.stringify(this.formModel[item.prop]))
+          this.$delete(this.formModel, item.prop)
+          this.$set(this.formModel, item.prop, arr)
+
+          this[`${item.prop}ModalShow`] = false
+          this._watcher.update()
         } else {
-          this[`${item.prop}Data`].push(data)
+          this.$Message.error('出现错误')
         }
-        if (formIndex >= 0) {
-          this.formModel[item.prop].splice(formIndex, 1, data)
-        } else {
-          this.formModel[item.prop].push(data)
-        }
-
-        const arr = JSON.parse(JSON.stringify(this.formModel[item.prop]))
-        this.$delete(this.formModel, item.prop)
-        this.$set(this.formModel, item.prop, arr)
-
-        this[`${item.prop}ModalShow`] = false
-        this._watcher.update()
-      } else {
-        this.$Message.error('出现错误')
-      }
+      })
     },
 
     handleRemoveOneToManyNotExist(row, item) {

@@ -18,7 +18,11 @@ const formItemsSetting = {}
 
 const searchItemsSetting = {}
 
-const modelSetting = {}
+const modelSetting = {
+  name: {
+    unique: true
+  }
+}
 
 mixinModel(model, modelSetting)
 

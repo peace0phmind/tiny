@@ -475,19 +475,20 @@ export default {
     },
 
     submit() {
-      const _data = this.$refs.editForm.getFormDataIfValid()
-      if (_data) {
-        this.restTemplate.PUT({data: _data}).then((res) => {
-          this.currentNode.data = JSON.parse(JSON.stringify(res))
-          this.$Message.success('修改成功')
-          // this.cancel()
-          this.$refs.editForm.changedModel = {}
-        }, (error) => {
-          this.$Message.error('提交失败')
-        })
-      } else {
-        this.$Message.error('校验不通过，请重新填写!')
-      }
+      this.$refs.editForm.getFormDataIfValid(_data => {
+        if (_data) {
+          this.restTemplate.PUT({data: _data}).then((res) => {
+            this.currentNode.data = JSON.parse(JSON.stringify(res))
+            this.$Message.success('修改成功')
+            // this.cancel()
+            this.$refs.editForm.changedModel = {}
+          }, (error) => {
+            this.$Message.error('提交失败')
+          })
+        } else {
+          this.$Message.error('校验不通过，请重新填写!')
+        }
+      })
     },
 
     cancelAdd() {
@@ -497,48 +498,49 @@ export default {
 
     submitAdd() {
       this.submitLoading = true
-      const _data = this.$refs.addForm.getFormDataIfValid()
-      if (_data) {
-        if (this.currentOperation === operation.insertRoot) {
-          this.restTemplate.POST({data: _data}).then((res) => {
-            this.$refs.tree.append(res)
-            this.$Message.success('插入根节点成功')
-            this.cancelAdd()
-          }, (error) => {
-            this.$Message.error('插入失败')
-          })
-        } else if (this.currentOperation === operation.append) {
-          this.restTemplate.POST({data: _data}).then((res) => {
-            this.$refs.tree.append(res, this.currentNode)
-            this.currentNode.expand()
-            this.currentNode.data._leaf = false
-            this.$Message.success('插入子节点成功')
-            this.cancelAdd()
-          }, (error) => {
-            this.$Message.error('插入失败')
-          })
-        } else if (this.currentOperation === operation.insertBefore) {
-          let uri = `tree/before/${this.currentNode.key}`
-          this.restTemplate.POST({uri: uri, data: _data}).then((res) => {
-            this.$refs.tree.insertBefore(res, this.currentNode)
-            this.$Message.success('插入成功')
-            this.cancelAdd()
-          }, (error) => {
-            this.$Message.error('插入失败')
-          })
-        } else if (this.currentOperation === operation.insertAfter) {
-          let uri = `tree/after/${this.currentNode.key}`
-          this.restTemplate.POST({uri: uri, data: _data}).then((res) => {
-            this.$refs.tree.insertAfter(res, this.currentNode)
-            this.$Message.success('插入成功')
-            this.cancelAdd()
-          }, (error) => {
-            this.$Message.error('插入失败')
-          })
+      this.$refs.addForm.getFormDataIfValid(_data => {
+        if (_data) {
+          if (this.currentOperation === operation.insertRoot) {
+            this.restTemplate.POST({data: _data}).then((res) => {
+              this.$refs.tree.append(res)
+              this.$Message.success('插入根节点成功')
+              this.cancelAdd()
+            }, (error) => {
+              this.$Message.error('插入失败')
+            })
+          } else if (this.currentOperation === operation.append) {
+            this.restTemplate.POST({data: _data}).then((res) => {
+              this.$refs.tree.append(res, this.currentNode)
+              this.currentNode.expand()
+              this.currentNode.data._leaf = false
+              this.$Message.success('插入子节点成功')
+              this.cancelAdd()
+            }, (error) => {
+              this.$Message.error('插入失败')
+            })
+          } else if (this.currentOperation === operation.insertBefore) {
+            let uri = `tree/before/${this.currentNode.key}`
+            this.restTemplate.POST({uri: uri, data: _data}).then((res) => {
+              this.$refs.tree.insertBefore(res, this.currentNode)
+              this.$Message.success('插入成功')
+              this.cancelAdd()
+            }, (error) => {
+              this.$Message.error('插入失败')
+            })
+          } else if (this.currentOperation === operation.insertAfter) {
+            let uri = `tree/after/${this.currentNode.key}`
+            this.restTemplate.POST({uri: uri, data: _data}).then((res) => {
+              this.$refs.tree.insertAfter(res, this.currentNode)
+              this.$Message.success('插入成功')
+              this.cancelAdd()
+            }, (error) => {
+              this.$Message.error('插入失败')
+            })
+          }
+        } else {
+          this.$Message.error('校验不通过，请重新填写!')
         }
-      } else {
-        this.$Message.error('校验不通过，请重新填写!')
-      }
+      })
       this.submitLoading = false
     }
   }

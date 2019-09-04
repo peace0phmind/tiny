@@ -4,7 +4,7 @@ import * as FormItemRenderTypes from '../_util/formItemRenderType.js'
 
 export default {
   methods: {
-    getFormDataIfValid() {
+    getFormDataIfValid(callback) {
       let _data
 
       this.$refs.form.validate(valid => {
@@ -55,9 +55,8 @@ export default {
             _data = utils.convertFieldIdToJson(this.changedModel)
           }
         }
+        callback(_data)
       })
-
-      return _data
     }
   }
 }
