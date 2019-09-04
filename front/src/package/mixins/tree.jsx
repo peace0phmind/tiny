@@ -486,7 +486,7 @@ export default {
           this.$Message.error('提交失败')
         })
       } else {
-        this.$Message.error('请填写完成，再提交!')
+        this.$Message.error('校验不通过，请重新填写!')
       }
     },
 
@@ -537,7 +537,7 @@ export default {
           })
         }
       } else {
-        this.$Message.error('请填写完成，再提交!')
+        this.$Message.error('校验不通过，请重新填写!')
       }
       this.submitLoading = false
     }

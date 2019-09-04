@@ -140,7 +140,7 @@ export default {
     } else {
 
       return (
-        <FormItem label={label} prop={prop}>
+        <FormItem ref={`${prop}IFormItem`} label={label} prop={prop}>
           {this.zyxForm.$scopedSlots[prop] &&
           this.zyxForm.$scopedSlots[prop]({
             formModel: this.formModel,

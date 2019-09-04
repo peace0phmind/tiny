@@ -291,6 +291,7 @@ export default {
       if (this.beforeSubmit && this.beforeSubmit() === false) return
 
       const vm = this
+
       const _data = this.$refs.form.getFormDataIfValid()
       if (_data) {
         this.$refs.form.loadingSubmit = true
@@ -330,7 +331,7 @@ export default {
           })
         }
       } else {
-        this.$Message.error('请填写完成，再提交!')
+        this.$Message.error('校验不通过，请重新填写!')
       }
     },
     handleRemove(id, index) {
@@ -351,6 +352,8 @@ export default {
             this.restTemplate.DELETE({uri: id}).then(() => {
               this.$Message.success('删除成功')
               this.load()
+            }, error => {
+              (error && error.detail) && this.$Message.error(error.detail) || this.$Message.error('服务器错误')
             })
           }
         }

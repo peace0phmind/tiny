@@ -4,7 +4,7 @@ const model = {
     type: 'STRING',
     required: false,
     readonly: false,
-    unique: false,
+    unique: true,
   },
   templateType: {
     name: '模板类型',
@@ -30,14 +30,15 @@ const model = {
     required: false,
     readonly: false,
     unique: false,
+    max: 1000,
+    min: 10,
   },
   decimalType: {
     name: 'decimal类型',
     type: 'DECIMAL',
     required: false,
     readonly: false,
-    unique: false,
-    precision: 2,
+    unique: false
   },
   timeType: {
     name: '时间类型',

@@ -14,7 +14,7 @@ export default {
           this.rules[prop].push({
             required,
             message: `请填写${label}`,
-            trigger: 'change'
+            trigger: 'blur'
           })
         }
 
@@ -40,6 +40,8 @@ export default {
                 }, (error) => {
                   callback(new Error('服务器错误，请稍后再试'))
                 })
+              } else {
+                callback()
               }
             },
             trigger: 'blur'
@@ -51,7 +53,7 @@ export default {
           this.rules[prop].push({
             min: minLength,
             message: `最小长度为${minLength}`,
-            trigger: 'change'
+            trigger: 'blur'
           })
         }
 
@@ -59,7 +61,7 @@ export default {
           this.rules[prop].push({
             max: maxLength,
             message: `最大长度为${maxLength}`,
-            trigger: 'change'
+            trigger: 'blur'
           })
         }
 
@@ -73,9 +75,11 @@ export default {
                   const formItem = this.normalFormItems.find(item => item.prop === equalsTo)
                   callback(new Error(`必须与${formItem.label}一致`))
                 }
+              } else {
+                callback(new Error(`必须与${formItem.label}一致`))
               }
             },
-            trigger: 'change'
+            trigger: 'blur'
           })
         }
 
@@ -89,9 +93,11 @@ export default {
                   } else {
                     callback()
                   }
+                } else {
+                  callback()
                 }
               },
-              trigger: 'change'
+              trigger: 'blur'
             })
           }
 
@@ -104,9 +110,11 @@ export default {
                   } else {
                     callback()
                   }
+                } else {
+                  callback()
                 }
               },
-              trigger: 'change'
+              trigger: 'blur'
             })
           }
 
@@ -124,9 +132,11 @@ export default {
                   } else {
                     callback(new Error(`小数点精度必须为${precision}位`))
                   }
+                } else {
+                  callback()
                 }
               },
-              trigger: 'change'
+              trigger: 'blur'
             })
           }
         }
@@ -138,7 +148,7 @@ export default {
             this.rules[prop].push({
               type: type,
               message: '格式不正确',
-              trigger: 'change'
+              trigger: 'blur'
             })
           }
 
@@ -146,7 +156,7 @@ export default {
             this.rules[prop].push({
               pattern: pattern,
               message: '格式不正确',
-              trigger: 'change'
+              trigger: 'blur'
             })
           }
 

@@ -10,7 +10,8 @@ import cn.know.act.proton.core.util.IRW;
 import javax.annotation.Generated;
 import java.util.Optional;
 import javax.validation.constraints.Size;
-import java.math.BigDecimal;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Max;
 import java.time.LocalTime;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -49,13 +50,13 @@ public class TestDTO extends BaseDTO<Long> implements Serializable {
      * int类型
      */
     @Generated(IRW.CODE_GENERATOR)
-    private Optional<Integer> intType;
+    private Optional<@Min(value = 10) @Max(value = 1000) Integer> intType;
 
     /**
      * decimal类型
      */
     @Generated(IRW.CODE_GENERATOR)
-    private Optional<BigDecimal> decimalType;
+    private Optional<@Min(value = 20) @Max(value = 2000) Integer> decimalType;
 
     /**
      * 时间类型
@@ -199,12 +200,12 @@ public class TestDTO extends BaseDTO<Long> implements Serializable {
     }
 
     @Generated(IRW.CODE_GENERATOR)
-    public Optional<BigDecimal> getDecimalType() {
+    public Optional<Integer> getDecimalType() {
         return decimalType;
     }
 
     @Generated(IRW.CODE_GENERATOR)
-    public void setDecimalType(Optional<BigDecimal> decimalType) {
+    public void setDecimalType(Optional<Integer> decimalType) {
         this.decimalType = decimalType;
     }
 

@@ -307,7 +307,7 @@ export default {
           })
         }
       } else {
-        this.$Message.error('请填写完成，再提交!')
+        this.$Message.error('校验不通过，请重新填写!')
       }
     },
     handleRemove (id, index) {

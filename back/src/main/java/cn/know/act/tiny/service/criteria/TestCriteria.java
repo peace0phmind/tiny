@@ -9,7 +9,6 @@ import cn.know.act.proton.core.util.IRW;
 import javax.annotation.Generated;
 import cn.know.act.proton.core.service.filter.LongFilter;
 import cn.know.act.proton.core.service.filter.IntegerFilter;
-import cn.know.act.proton.core.service.filter.BigDecimalFilter;
 import cn.know.act.proton.core.service.filter.LocalTimeFilter;
 import cn.know.act.proton.core.service.filter.LocalDateFilter;
 import cn.know.act.proton.core.service.filter.LocalDateTimeFilter;
@@ -47,7 +46,7 @@ public class TestCriteria implements Serializable {
      * decimal类型
      */
     @Generated(IRW.CODE_GENERATOR)
-    private BigDecimalFilter decimalType;
+    private IntegerFilter decimalType;
 
     /**
      * 时间类型
@@ -152,12 +151,12 @@ public class TestCriteria implements Serializable {
     }
 
     @Generated(IRW.CODE_GENERATOR)
-    public BigDecimalFilter getDecimalType() {
+    public IntegerFilter getDecimalType() {
         return decimalType;
     }
 
     @Generated(IRW.CODE_GENERATOR)
-    public void setDecimalType(BigDecimalFilter decimalType) {
+    public void setDecimalType(IntegerFilter decimalType) {
         this.decimalType = decimalType;
     }
 

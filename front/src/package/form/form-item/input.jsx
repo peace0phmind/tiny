@@ -30,7 +30,7 @@ export default {
     if (this.readonly) {
       return <span>{this.formModel[prop] || '-'}</span>
     } else return (
-      <Input type={this.type}
+      <Input ref={`${prop}ZyxFormItem`} type={this.type}
              v-model={this.formModel[prop]}
              placeholder={placeholder}
              disabled={this.disabled[prop] || _readonly}

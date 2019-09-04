@@ -26,7 +26,8 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ForeignKey;
 import javax.persistence.ConstraintMode;
-import java.math.BigDecimal;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Max;
 import java.time.LocalTime;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -87,6 +88,8 @@ public class Test implements AuditDate, AuditUser, SoftDelete, _Version, Seriali
      * int类型
      */
     @Generated(IRW.CODE_GENERATOR)
+    @Min(value = 10)
+    @Max(value = 1000)
     @Column(name = "int_type")
     private Integer intType;
 
@@ -94,8 +97,10 @@ public class Test implements AuditDate, AuditUser, SoftDelete, _Version, Seriali
      * decimal类型
      */
     @Generated(IRW.CODE_GENERATOR)
-    @Column(name = "decimal_type", scale = 2, columnDefinition = "Decimal(19, 2)")
-    private BigDecimal decimalType;
+    @Min(value = 20)
+    @Max(value = 2000)
+    @Column(name = "decimal_type")
+    private Integer decimalType;
 
     /**
      * 时间类型
@@ -274,12 +279,12 @@ public class Test implements AuditDate, AuditUser, SoftDelete, _Version, Seriali
     }
 
     @Generated(IRW.CODE_GENERATOR)
-    public BigDecimal getDecimalType() {
+    public Integer getDecimalType() {
         return decimalType;
     }
 
     @Generated(IRW.CODE_GENERATOR)
-    public void setDecimalType(BigDecimal decimalType) {
+    public void setDecimalType(Integer decimalType) {
         this.decimalType = decimalType;
     }
 

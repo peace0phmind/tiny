@@ -101,6 +101,7 @@ export default {
               props: {
                 searchable: !item.tree && true || false,
                 readonly: true,
+                enterFromRoute: false,
                 multipleSelect: false
               },
               on: {
@@ -111,8 +112,8 @@ export default {
             })
           },
           onOk: () => {
-            this.pullOptions(vm.item)
             if (item.tree) {
+              this.pullOptions(vm.item)
               const id = this.modelSelection[0].id
 
               if (id) {
@@ -131,6 +132,7 @@ export default {
                 })
               }
             } else {
+              this.pluginData(item, this.modelSelection[0].id)
               this.$set(this.queryParams, item.key, this.modelSelection[0].id)
             }
             this.modelSelection = []
