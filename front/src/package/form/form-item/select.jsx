@@ -57,7 +57,7 @@ export default {
 
     if (this.isEnum) {
       if (this.readonly) {
-        return <span>{enums[enumName][this.formModel[prop]].name}</span>
+        return <span>{'-'}</span>
       } else return (
         <Select v-model={this.formModel[prop]}
                 multiple={this.isMultiple}
