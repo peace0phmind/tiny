@@ -46,8 +46,6 @@
             <el-link icon="el-icon-view" :underline="false" type="primary" @click="view(row.id, index)"
                      style="margin-right: 10px" v-permission:read.resource="meta.restfulResourcePath"></el-link>
           </el-tooltip>
-
-
         </div>
 
       </template>

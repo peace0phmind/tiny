@@ -53,7 +53,7 @@ export default {
 
     const {restfulResourcePath} = this.meta
     this.restTemplate = new Rest(restfulResourcePath, this.$apiURL)
-    if (!this.enterFromRoute && hasPermission(this.meta.restfulResourcePath, 'read')) {
+    if ((!this.enterFromRoute || process.env.NODE_ENV === 'development') && hasPermission(this.meta.restfulResourcePath, 'read')) {
       this.loadOnCreate && this.data === undefined && this.load()
     }
 
