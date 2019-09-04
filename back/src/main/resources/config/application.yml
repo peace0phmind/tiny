@@ -3,7 +3,7 @@ management:
     web:
       base-path: /management
       exposure:
-        include: ['configprops', 'env', 'health', 'info', 'ptnmetrics', 'logfile', 'loggers', 'prometheus', 'threaddump', 'liquibase', 'metrics', 'caches']
+        include: ['configprops', 'env', 'health', 'info', 'ptnmetrics', 'logfile', 'loggers', 'prometheus', 'threaddump', 'liquibase', 'metrics', 'caches', 'httptrace']
   endpoint:
     health:
       show-details: WHEN_AUTHORIZED
