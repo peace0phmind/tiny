@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
-    <changeSet author="mind (generated)" id="1567581282642-1">
+    <changeSet author="mind (generated)" id="1567996677459-1">
         <createTable tableName="sys_audit_event_log">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="sys_audit_event_logPK"/>
@@ -11,7 +11,7 @@
             <column name="username" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-2">
+    <changeSet author="mind (generated)" id="1567996677459-2">
         <createTable tableName="sys_department">
             <column name="id" type="CHAR(36)">
                 <constraints primaryKey="true" primaryKeyName="sys_departmentPK"/>
@@ -24,7 +24,7 @@
             <column name="_parent_id" type="CHAR(36)"/>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-3">
+    <changeSet author="mind (generated)" id="1567996677459-3">
         <createTable tableName="sys_department__tp">
             <column name="depth" type="INT"/>
             <column name="descendant" type="CHAR(36)">
@@ -35,7 +35,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-4">
+    <changeSet author="mind (generated)" id="1567996677459-4">
         <createTable tableName="sys_menu">
             <column name="id" type="CHAR(36)">
                 <constraints primaryKey="true" primaryKeyName="sys_menuPK"/>
@@ -53,7 +53,7 @@
             <column name="_parent_id" type="CHAR(36)"/>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-5">
+    <changeSet author="mind (generated)" id="1567996677459-5">
         <createTable tableName="sys_menu__tp">
             <column name="depth" type="INT"/>
             <column name="descendant" type="CHAR(36)">
@@ -64,17 +64,17 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-6">
+    <changeSet author="mind (generated)" id="1567996677459-6">
         <createTable tableName="sys_menu_role">
-            <column name="menu_id" type="CHAR(36)">
+            <column name="role_id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="role_id" type="CHAR(36)">
+            <column name="menu_id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-7">
+    <changeSet author="mind (generated)" id="1567996677459-7">
         <createTable tableName="sys_permission">
             <column name="_type" type="VARCHAR(31)">
                 <constraints nullable="false"/>
@@ -89,7 +89,7 @@
             <column name="op_type" type="VARCHAR(15)"/>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-8">
+    <changeSet author="mind (generated)" id="1567996677459-8">
         <createTable tableName="sys_role">
             <column name="id" type="CHAR(36)">
                 <constraints primaryKey="true" primaryKeyName="sys_rolePK"/>
@@ -101,7 +101,7 @@
             <column name="type_" type="VARCHAR(11)"/>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-9">
+    <changeSet author="mind (generated)" id="1567996677459-9">
         <createTable tableName="sys_role_permission">
             <column name="_type" type="VARCHAR(31)">
                 <constraints nullable="false"/>
@@ -109,23 +109,23 @@
             <column name="id" type="CHAR(36)">
                 <constraints primaryKey="true" primaryKeyName="sys_role_permissionPK"/>
             </column>
-            <column name="op_allow" type="BOOLEAN"/>
             <column name="attr_type" type="VARCHAR(12)"/>
+            <column name="op_allow" type="BOOLEAN"/>
             <column name="permission_id" type="CHAR(36)"/>
             <column name="role_id" type="CHAR(36)"/>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-10">
+    <changeSet author="mind (generated)" id="1567996677459-10">
         <createTable tableName="sys_role_user">
-            <column name="user_id" type="CHAR(36)">
+            <column name="role_id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="role_id" type="CHAR(36)">
+            <column name="user_id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-11">
+    <changeSet author="mind (generated)" id="1567996677459-11">
         <createTable tableName="sys_schedule_job">
             <column name="id" type="CHAR(36)">
                 <constraints primaryKey="true" primaryKeyName="sys_schedule_jobPK"/>
@@ -143,7 +143,7 @@
             <column name="modifier_id" type="CHAR(36)"/>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-12">
+    <changeSet author="mind (generated)" id="1567996677459-12">
         <createTable tableName="sys_schedule_job_log">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="sys_schedule_job_logPK"/>
@@ -155,7 +155,7 @@
             <column name="job_id" type="CHAR(36)"/>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-13">
+    <changeSet author="mind (generated)" id="1567996677459-13">
         <createTable tableName="sys_system_log">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="sys_system_logPK"/>
@@ -170,7 +170,7 @@
             <column name="username" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-14">
+    <changeSet author="mind (generated)" id="1567996677459-14">
         <createTable tableName="sys_user">
             <column name="id" type="CHAR(36)">
                 <constraints primaryKey="true" primaryKeyName="sys_userPK"/>
@@ -190,7 +190,7 @@
             <column name="department_id" type="CHAR(36)"/>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-15">
+    <changeSet author="mind (generated)" id="1567996677459-15">
         <createTable tableName="tny_item">
             <column name="_type" type="VARCHAR(31)">
                 <constraints nullable="false"/>
@@ -205,7 +205,7 @@
             <column name="test_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-16">
+    <changeSet author="mind (generated)" id="1567996677459-16">
         <createTable tableName="tny_test">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="tny_testPK"/>
@@ -215,7 +215,7 @@
             <column name="created_date" type="TIMESTAMP"/>
             <column name="date_time_type" type="TIMESTAMP"/>
             <column name="date_type" type="date"/>
-            <column name="decimal_type" type="INT"/>
+            <column name="decimal_type" type="DECIMAL(4, 2)"/>
             <column name="deleted_date" type="TIMESTAMP"/>
             <column name="int_type" type="INT"/>
             <column name="modified_date" type="TIMESTAMP"/>
@@ -227,7 +227,7 @@
             <column name="template_type_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-17">
+    <changeSet author="mind (generated)" id="1567996677459-17">
         <createTable tableName="tny_test_multi_enum">
             <column name="test_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -235,7 +235,7 @@
             <column name="multi_enum" type="VARCHAR(10)"/>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-18">
+    <changeSet author="mind (generated)" id="1567996677459-18">
         <createTable tableName="tny_test_type">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="tny_test_typePK"/>
@@ -243,7 +243,7 @@
             <column name="name_" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-19">
+    <changeSet author="mind (generated)" id="1567996677459-19">
         <createTable tableName="tny_tree_item">
             <column name="_type" type="VARCHAR(31)">
                 <constraints nullable="false"/>
@@ -257,17 +257,17 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-20">
+    <changeSet author="mind (generated)" id="1567996677459-20">
         <createTable tableName="tny_tree_item_tree_test">
-            <column name="tree_test_id" type="BIGINT">
+            <column name="tree_item_id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="tree_item_id" type="CHAR(36)">
+            <column name="tree_test_id" type="BIGINT">
                 <constraints primaryKey="true"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-21">
+    <changeSet author="mind (generated)" id="1567996677459-21">
         <createTable tableName="tny_tree_test">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="tny_tree_testPK"/>
@@ -290,7 +290,7 @@
             <column name="test_type_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-22">
+    <changeSet author="mind (generated)" id="1567996677459-22">
         <createTable tableName="tny_tree_test__tp">
             <column name="depth" type="INT"/>
             <column name="descendant" type="BIGINT">
@@ -301,141 +301,141 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-23">
+    <changeSet author="mind (generated)" id="1567996677459-23">
         <addUniqueConstraint columnNames="username" constraintName="UC_SYS_USERUSERNAME_COL" tableName="sys_user"/>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-24">
+    <changeSet author="mind (generated)" id="1567996677459-24">
         <createIndex indexName="idx_sys_department__parent_id" tableName="sys_department">
             <column name="_parent_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-25">
+    <changeSet author="mind (generated)" id="1567996677459-25">
         <createIndex indexName="idx_sys_menu__parent_id" tableName="sys_menu">
             <column name="_parent_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-26">
+    <changeSet author="mind (generated)" id="1567996677459-26">
         <createIndex indexName="idx_sys_role_permission_permission_id" tableName="sys_role_permission">
             <column name="permission_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-27">
+    <changeSet author="mind (generated)" id="1567996677459-27">
         <createIndex indexName="idx_sys_role_permission_role_id" tableName="sys_role_permission">
             <column name="role_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-28">
+    <changeSet author="mind (generated)" id="1567996677459-28">
         <createIndex indexName="idx_sys_role_type_" tableName="sys_role">
             <column name="type_"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-29">
+    <changeSet author="mind (generated)" id="1567996677459-29">
         <createIndex indexName="idx_sys_schedule_job_creator_id" tableName="sys_schedule_job">
             <column name="creator_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-30">
+    <changeSet author="mind (generated)" id="1567996677459-30">
         <createIndex indexName="idx_sys_schedule_job_log_job_id" tableName="sys_schedule_job_log">
             <column name="job_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-31">
+    <changeSet author="mind (generated)" id="1567996677459-31">
         <createIndex indexName="idx_sys_schedule_job_modifier_id" tableName="sys_schedule_job">
             <column name="modifier_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-32">
+    <changeSet author="mind (generated)" id="1567996677459-32">
         <createIndex indexName="idx_sys_user_department_id" tableName="sys_user">
             <column name="department_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-33">
+    <changeSet author="mind (generated)" id="1567996677459-33">
         <createIndex indexName="idx_sys_user_sex" tableName="sys_user">
             <column name="sex"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-34">
+    <changeSet author="mind (generated)" id="1567996677459-34">
         <createIndex indexName="idx_tny_item_test_id" tableName="tny_item">
             <column name="test_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-35">
+    <changeSet author="mind (generated)" id="1567996677459-35">
         <createIndex indexName="idx_tny_test_creator_id" tableName="tny_test">
             <column name="creator_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-36">
+    <changeSet author="mind (generated)" id="1567996677459-36">
         <createIndex indexName="idx_tny_test_modifier_id" tableName="tny_test">
             <column name="modifier_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-37">
+    <changeSet author="mind (generated)" id="1567996677459-37">
         <createIndex indexName="idx_tny_test_status_" tableName="tny_test">
             <column name="status_"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-38">
+    <changeSet author="mind (generated)" id="1567996677459-38">
         <createIndex indexName="idx_tny_test_template_type_id" tableName="tny_test">
             <column name="template_type_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-39">
+    <changeSet author="mind (generated)" id="1567996677459-39">
         <createIndex indexName="idx_tny_tree_test__parent_id" tableName="tny_tree_test">
             <column name="_parent_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-40">
+    <changeSet author="mind (generated)" id="1567996677459-40">
         <createIndex indexName="idx_tny_tree_test_creator_id" tableName="tny_tree_test">
             <column name="creator_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-41">
+    <changeSet author="mind (generated)" id="1567996677459-41">
         <createIndex indexName="idx_tny_tree_test_modifier_id" tableName="tny_tree_test">
             <column name="modifier_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-42">
+    <changeSet author="mind (generated)" id="1567996677459-42">
         <createIndex indexName="idx_tny_tree_test_test_type_id" tableName="tny_tree_test">
             <column name="test_type_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-43">
+    <changeSet author="mind (generated)" id="1567996677459-43">
         <createIndex indexName="sys_menu_role_menu_id" tableName="sys_menu_role">
             <column name="menu_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-44">
+    <changeSet author="mind (generated)" id="1567996677459-44">
         <createIndex indexName="sys_menu_role_role_id" tableName="sys_menu_role">
             <column name="role_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-45">
+    <changeSet author="mind (generated)" id="1567996677459-45">
         <createIndex indexName="sys_role_user_role_id" tableName="sys_role_user">
             <column name="role_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-46">
+    <changeSet author="mind (generated)" id="1567996677459-46">
         <createIndex indexName="sys_role_user_user_id" tableName="sys_role_user">
             <column name="user_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-47">
+    <changeSet author="mind (generated)" id="1567996677459-47">
         <createIndex indexName="tny_tree_item_tree_test_tree_item_id" tableName="tny_tree_item_tree_test">
             <column name="tree_item_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-48">
+    <changeSet author="mind (generated)" id="1567996677459-48">
         <createIndex indexName="tny_tree_item_tree_test_tree_test_id" tableName="tny_tree_item_tree_test">
             <column name="tree_test_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-49">
+    <changeSet author="mind (generated)" id="1567996677459-49">
         <addForeignKeyConstraint baseColumnNames="job_id" baseTableName="sys_schedule_job_log" constraintName="FK7nu1c7glqktdgihk38yq6r9x2" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="sys_schedule_job" validate="true"/>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-50">
+    <changeSet author="mind (generated)" id="1567996677459-50">
         <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="sys_role_permission" constraintName="FK9q28ewrhntqeipl1t04kh1be7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="sys_role" validate="true"/>
     </changeSet>
-    <changeSet author="mind (generated)" id="1567581282642-51">
+    <changeSet author="mind (generated)" id="1567996677459-51">
         <addForeignKeyConstraint baseColumnNames="test_id" baseTableName="tny_item" constraintName="FKro9od8hh6310t7hve1acq2ig" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="tny_test" validate="true"/>
     </changeSet>
 </databaseChangeLog>
