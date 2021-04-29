@@ -27,7 +27,7 @@
         <liquibase.packages>cn.know.act.proton.system,${root.package.dir}</liquibase.packages>
 
         <!-- for java ast and code generate -->
-        <openapi-generator-maven-plugin.version>3.3.4</openapi-generator-maven-plugin.version>
+        <openapi-generator-maven-plugin.version>5.1.0</openapi-generator-maven-plugin.version>
         <mapstruct.version>1.3.0.Final</mapstruct.version>
         <jaxb-runtime.version>2.3.2</jaxb-runtime.version>
 
