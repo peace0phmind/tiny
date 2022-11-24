@@ -329,7 +329,7 @@
                             <groupId>org.hibernate</groupId>
                             <artifactId>hibernate-core</artifactId>
                             <!-- 5.3.9.Final will cause build error -->
-                            <version>5.3.8.Final</version>
+                            <version>5.3.20.Final</version>
                         </dependency>
                         <dependency>
                             <groupId>org.javassist</groupId>
